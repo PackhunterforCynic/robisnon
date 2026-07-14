@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { resolveImage } from '../utils/imageResolver';
 import styles from './Projects.module.css';
 
 interface ProjectPreview {
@@ -14,6 +15,12 @@ const Projects: React.FC = () => {
   const [projects, setProjects] = useState<ProjectPreview[]>([]);
 
   useEffect(() => {
+    document.title = "All Projects | Robinson J.";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', "A complete archive of software engineering and creative technology works by Robinson J.");
+    }
+
     // Vite's import.meta.glob allows us to fetch all JSON files in the folder
     const modules = import.meta.glob('../content/projects/*.json');
     const loadProjects = async () => {
@@ -27,7 +34,7 @@ const Projects: React.FC = () => {
       }
       setProjects(loaded);
     };
-    
+
     loadProjects();
   }, []);
 
@@ -48,7 +55,7 @@ const Projects: React.FC = () => {
         {projects.map((project) => (
           <Link key={project.id} to={`/projects/${project.id}`} className={styles.card}>
             <div className={styles.imageWrapper}>
-              <img src={project.heroImage} alt={project.title} loading="lazy" />
+              <img src={resolveImage(project.heroImage)} alt={project.title} loading="lazy" />
               <div className={styles.overlay}>
                 <span>View Case Study</span>
               </div>

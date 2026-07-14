@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { resolveImage } from '../utils/imageResolver';
 import styles from './FeaturedProjects.module.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -78,7 +79,7 @@ const FeaturedProjects: React.FC = () => {
           <Link key={project.id} to={`/projects/${project.id}`} className={`${styles.card} ${index % 2 !== 0 ? styles.reversed : ''}`}>
             <div className={styles.imageContent}>
               <div className={styles.imageWrapper}>
-                <img src={project.heroImage} alt={project.title} className={styles.image} loading="lazy" />
+                <img src={resolveImage(project.heroImage)} alt={project.title} className={styles.image} loading="lazy" />
                 <div className={styles.overlay}>
                   <span className={styles.exploreText}>View Case Study</span>
                 </div>

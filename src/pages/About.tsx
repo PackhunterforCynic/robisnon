@@ -34,6 +34,12 @@ const About: React.FC = () => {
   const [expData, setExpData] = useState<ExperienceData | null>(null);
 
   useEffect(() => {
+    document.title = "About | Robinson J.";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', "Learn more about Robinson J., my story, experience, education, and achievements.");
+    }
+
     import('../content/about.json').then(m => setAboutData(m.default));
     import('../content/education.json').then(m => setEduData(m.default));
     import('../content/experience.json').then(m => setExpData(m.default));

@@ -13,6 +13,12 @@ const Home: React.FC = () => {
   const contactRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    document.title = "Robinson J. | Creative Technologist & Filmmaker";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', "Portfolio of Robinson J., a Creative Technologist, Software Developer, and Cinematographer specializing in building modern web experiences and visual storytelling.");
+    }
+    
     if (contactRef.current) {
       const elements = contactRef.current.children;
       gsap.fromTo(elements,

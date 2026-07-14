@@ -43,6 +43,13 @@ const ProjectDetails: React.FC = () => {
   useEffect(() => {
     if (!project) return;
 
+    // Update SEO tags for the loaded project
+    document.title = `${project.title} | Robinson J.`;
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', project.overview);
+    }
+
     // Hero Parallax & Title Reveal
     if (heroRef.current && heroImageRef.current && titleRef.current) {
       gsap.fromTo(titleRef.current,

@@ -146,6 +146,12 @@ const Skills: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    document.title = "Skills | Robinson J.";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', "A comprehensive overview of languages, frameworks, and tools used by Robinson J. to build robust software.");
+    }
+
     import('../content/skills.json').then((module) => {
       setData(module.default);
     });
