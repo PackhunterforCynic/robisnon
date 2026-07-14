@@ -20,7 +20,10 @@ const Projects: React.FC = () => {
       const loaded: ProjectPreview[] = [];
       for (const path in modules) {
         const mod = await modules[path]() as { default: ProjectPreview };
-        loaded.push(mod.default);
+        const data = mod.default;
+        if (!['amazon-affiliate', 'jj-enterprises', 'personal-portfolio', 'hse-digital'].includes(data.id)) {
+          loaded.push(data);
+        }
       }
       setProjects(loaded);
     };

@@ -19,7 +19,7 @@ const FeaturedProjects: React.FC = () => {
 
   useEffect(() => {
     // Dynamic import for a few featured projects
-    const featuredIds = ['personal-portfolio', 'havilah-studio', 'flash-bites', 'musica'];
+    const featuredIds = ['havilah-studio', 'flash-bites', 'musica'];
     
     Promise.all(
       featuredIds.map(id => import(`../content/projects/${id}.json`).then(m => m.default))
@@ -58,17 +58,23 @@ const FeaturedProjects: React.FC = () => {
       </div>
 
       <div className={styles.grid}>
-        {projects.map((project) => (
-          <Link key={project.id} to={`/projects/${project.id}`} className={styles.card}>
-            <div className={styles.imageWrapper}>
-              <img src={project.heroImage} alt={project.title} className={styles.image} loading="lazy" />
-              <div className={styles.overlay}>
-                <span className={styles.exploreText}>Explore</span>
+        {projects.map((project, index) => (
+          <Link key={project.id} to={`/projects/${project.id}`} className={`${styles.card} ${index % 2 !== 0 ? styles.reversed : ''}`}>
+            <div className={styles.imageContent}>
+              <div className={styles.imageWrapper}>
+                <img src={project.heroImage} alt={project.title} className={styles.image} loading="lazy" />
+                <div className={styles.overlay}>
+                  <span className={styles.exploreText}>View Case Study</span>
+                </div>
               </div>
             </div>
-            <div className={styles.info}>
-              <h3>{project.title}</h3>
-              <p>{project.subtitle}</p>
+            <div className={styles.textContent}>
+              <div className={styles.projectNumber}>{(index + 1).toString().padStart(2, '0')}</div>
+              <h3 className={styles.projectTitle}>{project.title}</h3>
+              <p className={styles.projectSubtitle}>{project.subtitle}</p>
+              <div className={styles.discoverBtn}>
+                Explore Project <span className={styles.arrow}>→</span>
+              </div>
             </div>
           </Link>
         ))}

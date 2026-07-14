@@ -22,7 +22,7 @@ const Home: React.FC = () => {
         {/* Footer / Contact placeholder for future */}
         <section style={{ padding: '4rem 2rem', textAlign: 'center', backgroundColor: 'var(--bg-surface)' }}>
           <h2 style={{ fontFamily: 'var(--font-serif)', color: 'var(--accent-gold)', marginBottom: '1rem' }}>Ready to create something amazing?</h2>
-          <a href="mailto:contact@robinson.com" style={{ textDecoration: 'underline', color: 'var(--text-primary)' }}>Get in touch</a>
+          <a href="mailto:robinsonj16506@gmail.com" style={{ textDecoration: 'underline', color: 'var(--text-primary)' }}>Get in touch</a>
         </section>
       </main>
     </motion.div>
