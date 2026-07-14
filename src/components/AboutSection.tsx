@@ -25,19 +25,19 @@ const AboutSection: React.FC = () => {
 
   useEffect(() => {
     if (data && textRef.current) {
-      const paragraphs = textRef.current.querySelectorAll('p');
+      const elements = containerRef.current.querySelectorAll(`.${styles.heading}, .${styles.bio}, .${styles.roles}, .${styles.narrative} p`);
       
-      gsap.fromTo(paragraphs, 
+      gsap.fromTo(elements, 
         { opacity: 0, y: 30 },
         {
           opacity: 1, 
           y: 0, 
           duration: 1, 
-          stagger: 0.2, 
+          stagger: 0.15, 
           ease: 'power3.out',
           scrollTrigger: {
             trigger: containerRef.current,
-            start: 'top 70%',
+            start: 'top 80%',
           }
         }
       );

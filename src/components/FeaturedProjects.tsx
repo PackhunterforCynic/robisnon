@@ -31,7 +31,23 @@ const FeaturedProjects: React.FC = () => {
   useEffect(() => {
     if (projects.length > 0 && containerRef.current) {
       const cards = containerRef.current.querySelectorAll(`.${styles.card}`);
+      const headerElements = containerRef.current.querySelectorAll(`.${styles.header} > *`);
       
+      gsap.fromTo(headerElements,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          stagger: 0.2,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top 85%',
+          }
+        }
+      );
+
       cards.forEach((card) => {
         gsap.fromTo(card,
           { opacity: 0, y: 50 },

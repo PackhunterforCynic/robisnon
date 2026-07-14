@@ -51,6 +51,16 @@
   will-change: transform, opacity;
 }
 
+@media (max-width: 1023px) {
+  .card {
+    position: sticky;
+    top: 100px;
+    background-color: var(--bg-primary);
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+}
+
 @media (min-width: 1024px) {
   .grid {
     gap: 8rem;

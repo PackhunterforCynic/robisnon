@@ -146,7 +146,23 @@ const SkillsSection: React.FC = () => {
   useEffect(() => {
     if (data && containerRef.current) {
       const categories = containerRef.current.querySelectorAll(`.${styles.category}`);
+      const headerElements = containerRef.current.querySelectorAll(`.${styles.header} > *`);
       
+      gsap.fromTo(headerElements,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          stagger: 0.2,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top 80%',
+          }
+        }
+      );
+
       gsap.fromTo(categories,
         { opacity: 0, x: -30 },
         {
