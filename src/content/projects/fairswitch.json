@@ -2,7 +2,7 @@
   "id": "fairswitch",
   "title": "Fairswitch",
   "subtitle": "Printing & Branding Business Website",
-  "heroImage": "/src/assets/fair-switch.png",
+  "heroImage": "../src/assets/fair-switch.png",
   "overview": "A corporate website showcasing printing services, branding solutions, and business offerings through a modern and professional interface.",
   "roles": ["Web Developer"],
   "techStack": ["HTML", "CSS", "JavaScript"],
