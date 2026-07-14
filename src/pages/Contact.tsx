@@ -1,30 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import styles from './Contact.module.css';
 
 const Contact: React.FC = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [message, setMessage] = useState('');
-  const [phoneError, setPhoneError] = useState('');
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Validate phone number: allows optional + and digits/spaces/hyphens
-    const cleanedPhone = phone.replace(/[\s-]/g, '');
-    const phoneRegex = /^[\+]?[0-9]{10,15}$/;
-    
-    if (!phoneRegex.test(cleanedPhone)) {
-      setPhoneError("Please enter a valid phone number (10-15 digits)");
-      return;
-    }
-    
-    setPhoneError('');
-    
     // Connect form to a service like Formspree, EmailJS, or backend API here
-    alert("Form validated successfully! Connect it to your backend service.");
+    alert("This form is currently a template. Connect it to your backend service!");
   };
 
   return (
@@ -64,51 +46,17 @@ const Contact: React.FC = () => {
           <form className={styles.form} onSubmit={handleSubmit}>
             <div className={styles.inputGroup}>
               <label htmlFor="name">What's your name?</label>
-              <input 
-                type="text" 
-                id="name" 
-                required 
-                placeholder="John Doe" 
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
+              <input type="text" id="name" required placeholder="John Doe" />
             </div>
             
             <div className={styles.inputGroup}>
               <label htmlFor="email">What's your email?</label>
-              <input 
-                type="email" 
-                id="email" 
-                required 
-                placeholder="john@example.com" 
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-
-            <div className={styles.inputGroup}>
-              <label htmlFor="phone">What's your phone number?</label>
-              <input 
-                type="tel" 
-                id="phone" 
-                required 
-                placeholder="+91 9999999999" 
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-              />
-              {phoneError && <span className={styles.errorText}>{phoneError}</span>}
+              <input type="email" id="email" required placeholder="john@example.com" />
             </div>
             
             <div className={styles.inputGroup}>
               <label htmlFor="message">Tell me about your project or inquiry.</label>
-              <textarea 
-                id="message" 
-                required 
-                rows={4} 
-                placeholder="Hello Robinson, I'd like to discuss..."
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-              ></textarea>
+              <textarea id="message" required rows={5} placeholder="Hello Robinson, I'd like to discuss..."></textarea>
             </div>
             
             <button type="submit" className={styles.submitBtn}>

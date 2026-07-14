@@ -114,12 +114,6 @@
   border-color: var(--accent-gold);
 }
 
-.errorText {
-  color: #ff4d4d;
-  font-size: 0.85rem;
-  margin-top: 4px;
-}
-
 /* Fix autofill white background */
 .inputGroup input:-webkit-autofill,
 .inputGroup input:-webkit-autofill:hover, 
