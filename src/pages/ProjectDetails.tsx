@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { resolveImage } from '../utils/imageResolver';
 import styles from './ProjectDetails.module.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -118,7 +119,7 @@ const ProjectDetails: React.FC = () => {
       {/* 100vh Parallax Hero */}
       <section ref={heroRef} className={styles.hero}>
         <div className={styles.heroImageContainer}>
-          <img ref={heroImageRef} src={project.heroImage} alt={project.title} className={styles.heroImage} />
+          <img ref={heroImageRef} src={resolveImage(project.heroImage)} alt={project.title} className={styles.heroImage} />
           <div className={styles.heroOverlay}></div>
         </div>
         <div className={styles.heroContent}>
