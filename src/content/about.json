@@ -1,0 +1,16 @@
+{
+  "name": "Robinson J.",
+  "roles": [
+    "Software Engineer",
+    "Full Stack Developer",
+    "Creative Technologist",
+    "Cinematographer"
+  ],
+  "bio": "Computer Science postgraduate targeting a software engineering role focused on building reliable, scalable systems.",
+  "about": [
+    "I am a Computer Science postgraduate with strong foundations in data structures, algorithms, OOP, and system design.",
+    "I have built and shipped production-grade projects applying REST API design, component-based architecture, and scalable data modeling.",
+    "Proficient in Python, JavaScript, Java, and modern web frameworks. I am passionate about writing clean, testable, high-performance code and solving complex engineering problems at scale.",
+    "Beyond software engineering, I am a self-taught video editor, color grader, and award-winning photographer, bringing a unique blend of analytical problem-solving and creative visual storytelling to every project."
+  ]
+}

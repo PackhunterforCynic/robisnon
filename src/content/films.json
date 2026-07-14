@@ -1,0 +1,22 @@
+{
+  "films": [
+    {
+      "id": "f1",
+      "title": "The Silent Echo",
+      "category": "Short Film",
+      "heroImage": "https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=2000&auto=format&fit=crop",
+      "description": "An experimental short film exploring the themes of isolation and soundscapes in a bustling city.",
+      "role": "Director & Cinematographer",
+      "equipment": ["Sony FX3", "Sigma Art 24-70mm", "DJI RS3"]
+    },
+    {
+      "id": "f2",
+      "title": "Havilah Wedding Reel",
+      "category": "Wedding Film",
+      "heroImage": "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2000&auto=format&fit=crop",
+      "description": "A cinematic retelling of a beautiful summer wedding, focusing on intimate moments and natural lighting.",
+      "role": "Cinematographer",
+      "equipment": ["Sony A7S III", "G-Master 35mm f1.4"]
+    }
+  ]
+}

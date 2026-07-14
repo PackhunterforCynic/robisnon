@@ -1,0 +1,23 @@
+{
+  "id": "personal-portfolio",
+  "title": "Personal Portfolio",
+  "subtitle": "Cinematic Interactive Experience",
+  "heroImage": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2000&auto=format&fit=crop",
+  "overview": "The very platform you are currently exploring. Designed as a high-performance cinematic experience, blurring the lines between a traditional portfolio and an interactive film.",
+  "roles": ["Software Developer", "Creative Technologist", "Cinematographer", "Designer"],
+  "techStack": ["React", "Vite", "GSAP", "Framer Motion", "TypeScript", "Lenis"],
+  "highlights": [
+    "60 FPS Animations",
+    "Dynamic Project Routing",
+    "Cinematic Media Viewer",
+    "ScrollTrigger Parallax",
+    "Custom Analytics"
+  ],
+  "story": [
+    {
+      "section": "The Vision",
+      "content": "To build a digital exhibition that proves high-end cinematic visuals can coexist with lightning-fast 60 FPS performance on the web.",
+      "media": null
+    }
+  ]
+}

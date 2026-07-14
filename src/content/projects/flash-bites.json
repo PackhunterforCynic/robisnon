@@ -1,0 +1,22 @@
+{
+  "id": "flash-bites",
+  "title": "Flash Bites",
+  "subtitle": "Scalable Food-Delivery Platform",
+  "heroImage": "https://images.unsplash.com/photo-1526367790999-0150786686a2?q=80&w=2000&auto=format&fit=crop",
+  "overview": "Architected a scalable food-delivery system using client-server separation, stateless JWT authentication, and cloud-hosted MongoDB Atlas.",
+  "roles": ["Software Engineer"],
+  "techStack": ["React", "Vite", "Node.js", "Express", "MongoDB", "Razorpay"],
+  "highlights": [
+    "JWT Authentication",
+    "MongoDB Atlas",
+    "API Response Caching",
+    "Razorpay Integration"
+  ],
+  "story": [
+    {
+      "section": "Engineering Execution",
+      "content": "Applied lazy loading, code splitting, and API response caching to achieve sub-2s page loads. Integrated Razorpay payment gateway with idempotent webhook handling for reliable transaction processing.",
+      "media": null
+    }
+  ]
+}

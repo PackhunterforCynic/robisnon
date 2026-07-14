@@ -1,0 +1,120 @@
+.container {
+  min-height: 100vh;
+  padding: calc(var(--space-2xl) + 80px) var(--space-md) var(--space-2xl);
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: var(--space-2xl);
+  text-align: center;
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 6vw, 5rem);
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  margin-bottom: var(--space-sm);
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-xl);
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-sm);
+}
+
+.filterBtn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-secondary);
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  transition: all 0.3s ease;
+}
+
+.filterBtn:hover, .filterBtn.active {
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+}
+
+/* Editorial Masonry-like Grid */
+.gallery {
+  column-count: 1;
+  column-gap: var(--space-lg);
+}
+
+@media (min-width: 768px) {
+  .gallery {
+    column-count: 2;
+  }
+}
+
+@media (min-width: 1200px) {
+  .gallery {
+    column-count: 3;
+  }
+}
+
+.photoWrapper {
+  position: relative;
+  width: 100%;
+  margin-bottom: var(--space-lg);
+  break-inside: avoid;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.photoWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(5, 5, 5, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  padding: var(--space-md);
+  text-align: center;
+}
+
+.overlay span {
+  font-size: 1rem;
+  color: var(--text-primary);
+  transform: translateY(10px);
+  transition: transform 0.4s ease;
+}
+
+.photoWrapper:hover img {
+  transform: scale(1.03);
+}
+
+.photoWrapper:hover .overlay {
+  opacity: 1;
+}
+
+.photoWrapper:hover .overlay span {
+  transform: translateY(0);
+}

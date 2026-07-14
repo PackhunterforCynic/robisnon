@@ -1,0 +1,23 @@
+{
+  "id": "musica",
+  "title": "Musica",
+  "subtitle": "Real-Time Music Sharing Platform",
+  "heroImage": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=2000&auto=format&fit=crop",
+  "overview": "A modern platform designed for discovering, organizing, and sharing music with a responsive, media-focused interface.",
+  "roles": ["Frontend Developer", "Audio Enthusiast"],
+  "techStack": ["HTML", "CSS", "JavaScript", "REST API"],
+  "highlights": [
+    "Audio Playback",
+    "Playlist Management",
+    "Dynamic UI",
+    "Responsive Experience",
+    "Optimized Performance"
+  ],
+  "story": [
+    {
+      "section": "The Vision",
+      "content": "To create a seamless and responsive music listening experience that rivals native applications.",
+      "media": null
+    }
+  ]
+}

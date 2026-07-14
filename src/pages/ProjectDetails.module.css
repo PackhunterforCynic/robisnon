@@ -1,0 +1,313 @@
+.container {
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.backNav {
+  position: fixed;
+  top: max(100px, env(safe-area-inset-top));
+  left: max(var(--space-md), env(safe-area-inset-left));
+  z-index: 100;
+  mix-blend-mode: difference;
+}
+
+.backNav a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  opacity: 0.7;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.backNav a:hover {
+  opacity: 1;
+  transform: translateX(-5px);
+}
+
+.backNav svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* 100vh Parallax Hero */
+.hero {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.heroImageContainer {
+  position: absolute;
+  top: -10%;
+  left: 0;
+  width: 100%;
+  height: 120%; /* Extra height for parallax */
+  z-index: 0;
+}
+
+.heroImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.heroOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(5,5,5,0.2) 0%, rgba(5,5,5,0.8) 80%, rgba(5,5,5,1) 100%);
+}
+
+.heroContent {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: 0 var(--space-md);
+  margin-top: 10vh;
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 8vw, 7rem);
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  line-height: 1;
+  margin-bottom: var(--space-sm);
+  will-change: transform, opacity;
+}
+
+.subtitle {
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  font-style: italic;
+  font-family: var(--font-serif);
+  color: var(--text-secondary);
+}
+
+/* Main Content Wrapper */
+.content {
+  position: relative;
+  z-index: 10;
+  background-color: var(--bg-primary);
+  padding: var(--space-3xl) var(--space-md);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Editorial Overview Block */
+.overviewSection {
+  margin-bottom: var(--space-3xl);
+  padding-bottom: var(--space-2xl);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.overviewGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-2xl);
+}
+
+@media (min-width: 1024px) {
+  .overviewGrid {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+.mainOverview h2 {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  color: var(--text-primary);
+  margin-bottom: var(--space-md);
+}
+
+.mainOverview p {
+  font-size: clamp(1.2rem, 2vw, 1.8rem);
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.metaData {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.metaBlock h3 {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--accent-gold);
+  padding-bottom: 4px;
+  display: inline-block;
+}
+
+.metaBlock ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.metaBlock li {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+/* Bento Box Highlights */
+.highlightsSection {
+  margin-bottom: var(--space-3xl);
+}
+
+.highlightsSection h2 {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  color: var(--accent-gold);
+  margin-bottom: var(--space-lg);
+  text-align: center;
+}
+
+.bentoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-md);
+}
+
+.bentoItem {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: var(--space-xl) var(--space-md);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: transform 0.4s ease, background 0.4s ease;
+  backdrop-filter: blur(10px);
+}
+
+.bentoItem:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--accent-gold);
+}
+
+.bentoItem span {
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--text-primary);
+}
+
+/* Cinematic Storytelling */
+.storySection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xl);
+  margin-bottom: var(--space-3xl);
+}
+
+.storyBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .storyBlock {
+    flex-direction: row;
+  }
+  .storyBlockReverse {
+    flex-direction: row-reverse;
+  }
+}
+
+.storyMedia {
+  flex: 1.5;
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.storyMedia img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.storyText {
+  flex: 1;
+  padding: var(--space-lg);
+}
+
+.storyText h2 {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  color: var(--text-primary);
+  margin-bottom: var(--space-md);
+}
+
+.storyText p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+.storyTextFull {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.storyTextFull h2 {
+  font-family: var(--font-serif);
+  font-size: 3rem;
+  color: var(--accent-gold);
+  margin-bottom: var(--space-lg);
+}
+
+.storyTextFull p {
+  font-size: 1.3rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+/* Next Project CTA */
+.nextProject {
+  text-align: center;
+  padding: var(--space-3xl) 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.nextLink {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.nextLink h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  transition: color 0.4s ease, transform 0.4s ease;
+}
+
+.nextLink:hover h2 {
+  color: var(--accent-gold);
+  transform: scale(1.05);
+}

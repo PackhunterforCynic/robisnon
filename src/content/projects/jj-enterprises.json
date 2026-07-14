@@ -1,0 +1,22 @@
+{
+  "id": "jj-enterprises",
+  "title": "JJ Enterprises",
+  "subtitle": "Office Food Canteen Platform",
+  "heroImage": "https://images.unsplash.com/photo-1555243896-c709bfa0b564?q=80&w=2000&auto=format&fit=crop",
+  "overview": "A digital solution for office food ordering and canteen administration, designed to streamline daily operations.",
+  "roles": ["Full-Stack Developer"],
+  "techStack": ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
+  "highlights": [
+    "Food Ordering",
+    "Billing",
+    "Reports",
+    "Admin Panel"
+  ],
+  "story": [
+    {
+      "section": "The Vision",
+      "content": "To replace manual ordering processes with a reliable, digitized workflow that integrates directly with the kitchen.",
+      "media": null
+    }
+  ]
+}

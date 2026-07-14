@@ -1,0 +1,23 @@
+{
+  "id": "havilah-studio",
+  "title": "Havilah Studio",
+  "subtitle": "Premium Multimedia Production Portfolio",
+  "heroImage": "https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?q=80&w=2000&auto=format&fit=crop",
+  "overview": "A cinematic portfolio experience designed for showcasing photography, films, and creative work through immersive storytelling.",
+  "roles": ["Creative Technologist", "Frontend Developer"],
+  "techStack": ["React", "TypeScript", "GSAP", "Framer Motion", "Vite"],
+  "highlights": [
+    "Cinematic UI",
+    "Project Showcase",
+    "Interactive Gallery",
+    "Video Portfolio",
+    "Storytelling Layouts"
+  ],
+  "story": [
+    {
+      "section": "The Vision",
+      "content": "To build an immersive visual experience that places the studio's rich multimedia content at the forefront.",
+      "media": null
+    }
+  ]
+}

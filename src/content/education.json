@@ -1,0 +1,40 @@
+{
+  "education": [
+    {
+      "degree": "Master of Computer Applications (MCA)",
+      "year": "2025",
+      "institution": "United Intl. Business School, Bengaluru",
+      "description": "Postgraduate focus on data structures, algorithms, and advanced software engineering."
+    },
+    {
+      "degree": "Bachelor of Computer Applications (BCA)",
+      "year": "",
+      "institution": "United Intl. Degree College, Bengaluru",
+      "description": ""
+    },
+    {
+      "degree": "Pre-University Course (PUC)",
+      "year": "",
+      "institution": "BEMP Boys College, Bengaluru",
+      "description": ""
+    },
+    {
+      "degree": "SSLC",
+      "year": "",
+      "institution": "B.R.R.P.A.M High School, Bengaluru",
+      "description": ""
+    }
+  ],
+  "certifications": [
+    "AWS Cloud Foundations",
+    "CCNA 200-301 - Network Fundamentals",
+    "Software Testing - Manual & Automation",
+    "Postman API Testing",
+    "MongoDB - CRUD & Aggregation"
+  ],
+  "achievements": [
+    "1st Prize - Photography (precision & detail)",
+    "1st Prize - Poster Making using Canva",
+    "Self-taught: Video Editing & Color Grading"
+  ]
+}

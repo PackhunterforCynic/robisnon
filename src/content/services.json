@@ -1,0 +1,64 @@
+{
+  "services": [
+    "Full-Stack Web Development",
+    "Business Websites",
+    "Portfolio Websites",
+    "E-Commerce Solutions",
+    "UI/UX Design",
+    "Website Maintenance",
+    "Backend Support",
+    "Cloud Deployment",
+    "Photography",
+    "Videography",
+    "Event Coverage",
+    "Multimedia Production"
+  ],
+  "areas": [
+    {
+      "title": "Software Development",
+      "items": [
+        "Full-Stack Web Applications",
+        "Frontend Development",
+        "Backend Development",
+        "REST APIs",
+        "Database Design",
+        "Performance Optimization",
+        "Responsive Web Design",
+        "UI Engineering"
+      ]
+    },
+    {
+      "title": "Creative Technology",
+      "items": [
+        "Interactive Experiences",
+        "Motion Design",
+        "Visual Storytelling",
+        "Creative Coding",
+        "Multimedia Production"
+      ]
+    },
+    {
+      "title": "Photography",
+      "items": [
+        "Portrait Photography",
+        "Event Photography",
+        "Wedding Photography",
+        "Commercial Photography",
+        "Product Photography",
+        "Travel Photography"
+      ]
+    },
+    {
+      "title": "Cinematography",
+      "items": [
+        "Commercial Films",
+        "Wedding Films",
+        "Event Coverage",
+        "Short Films",
+        "Promotional Videos",
+        "Color Grading",
+        "Video Editing"
+      ]
+    }
+  ]
+}

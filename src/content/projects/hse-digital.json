@@ -1,0 +1,23 @@
+{
+  "id": "hse-digital",
+  "title": "HSE Digital Media & IT",
+  "subtitle": "Corporate Business Website",
+  "heroImage": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000&auto=format&fit=crop",
+  "overview": "A modern corporate website presenting multimedia production, IT solutions, and digital services with a clean, professional user experience.",
+  "roles": ["Frontend Developer"],
+  "techStack": ["React", "CSS", "JavaScript"],
+  "highlights": [
+    "Company Branding",
+    "Services",
+    "Portfolio",
+    "Contact Integration",
+    "Responsive Design"
+  ],
+  "story": [
+    {
+      "section": "The Vision",
+      "content": "To establish a strong digital presence that accurately reflects the company's dual expertise in IT solutions and multimedia production.",
+      "media": null
+    }
+  ]
+}

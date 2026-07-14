@@ -1,0 +1,22 @@
+{
+  "id": "unite-25",
+  "title": "College Fest Management Portal",
+  "subtitle": "Full-Lifecycle Event Platform (UNITE '25)",
+  "heroImage": "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2000&auto=format&fit=crop",
+  "overview": "Engineered a full-lifecycle event platform supporting 500+ concurrent users across 15+ events.",
+  "roles": ["Software Engineer"],
+  "techStack": ["React", "PHP", "MySQL", "REST API"],
+  "highlights": [
+    "Normalized Data Schemas",
+    "REST APIs",
+    "Atomic Update Operations",
+    "Seat-Availability Logic"
+  ],
+  "story": [
+    {
+      "section": "Engineering Execution",
+      "content": "Designed normalized data schemas to prevent redundancy; built PHP REST APIs with input validation and real-time seat-availability logic using atomic update operations — reducing manual effort by ~85%.",
+      "media": null
+    }
+  ]
+}

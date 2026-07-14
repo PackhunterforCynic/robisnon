@@ -1,0 +1,22 @@
+{
+  "id": "smartserve",
+  "title": "SmartServe POS System",
+  "subtitle": "Multi-Tier Point of Sale Application",
+  "heroImage": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=2000&auto=format&fit=crop",
+  "overview": "Designed and implemented a multi-tier POS system applying MVC architecture and role-based access control (admin/cashier/kitchen).",
+  "roles": ["Software Engineer"],
+  "techStack": ["React", "Node.js", "Express.js", "MongoDB", "REST API"],
+  "highlights": [
+    "MVC Architecture",
+    "Role-Based Access Control",
+    "Modular Routing & Middleware",
+    "Query Optimization"
+  ],
+  "story": [
+    {
+      "section": "Engineering Execution",
+      "content": "Built RESTful service layer with Express.js using modular routing and middleware; optimized MongoDB queries with indexing to handle 50+ concurrent transactions — cutting billing time by ~40% with zero data integrity errors.",
+      "media": null
+    }
+  ]
+}

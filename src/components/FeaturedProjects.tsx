@@ -1,0 +1,80 @@
+import React, { useEffect, useState, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import styles from './FeaturedProjects.module.css';
+
+gsap.registerPlugin(ScrollTrigger);
+
+interface ProjectCard {
+  id: string;
+  title: string;
+  subtitle: string;
+  heroImage: string;
+}
+
+const FeaturedProjects: React.FC = () => {
+  const [projects, setProjects] = useState<ProjectCard[]>([]);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Dynamic import for a few featured projects
+    const featuredIds = ['personal-portfolio', 'havilah-studio', 'flash-bites', 'musica'];
+    
+    Promise.all(
+      featuredIds.map(id => import(`../content/projects/${id}.json`).then(m => m.default))
+    ).then((loadedProjects) => {
+      setProjects(loadedProjects);
+    });
+  }, []);
+
+  useEffect(() => {
+    if (projects.length > 0 && containerRef.current) {
+      const cards = containerRef.current.querySelectorAll(`.${styles.card}`);
+      
+      cards.forEach((card) => {
+        gsap.fromTo(card,
+          { opacity: 0, y: 50 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 85%',
+            }
+          }
+        );
+      });
+    }
+  }, [projects]);
+
+  return (
+    <section ref={containerRef} className={styles.section}>
+      <div className={styles.header}>
+        <h2 className={styles.heading}>Selected Work</h2>
+        <Link to="/projects" className={styles.viewAll}>View All</Link>
+      </div>
+
+      <div className={styles.grid}>
+        {projects.map((project) => (
+          <Link key={project.id} to={`/projects/${project.id}`} className={styles.card}>
+            <div className={styles.imageWrapper}>
+              <img src={project.heroImage} alt={project.title} className={styles.image} loading="lazy" />
+              <div className={styles.overlay}>
+                <span className={styles.exploreText}>Explore</span>
+              </div>
+            </div>
+            <div className={styles.info}>
+              <h3>{project.title}</h3>
+              <p>{project.subtitle}</p>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </section>
+  );
+};
+
+export default FeaturedProjects;
