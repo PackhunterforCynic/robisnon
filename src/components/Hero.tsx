@@ -2,8 +2,8 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from './Hero.module.css';
-import heroImg from '../assets/image.png'
-import mobileImg from '../assets/mobile.png'
+import heroImg from '../assets/image.webp'
+import mobileImg from '../assets/mobile.webp'
 
 gsap.registerPlugin(ScrollTrigger);
 
