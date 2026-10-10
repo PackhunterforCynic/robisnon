@@ -63,7 +63,7 @@ const Hero: React.FC = () => {
       <div className={styles.videoPlaceholder}>
         <picture>
           <source media="(max-width: 768px)" srcSet={mobileImg} />
-          <img ref={imgRef} src={heroImg} alt="Robinson J" className={styles.media} loading="eager" decoding="sync" />
+          <img ref={imgRef} src={heroImg} alt="Robinson J" className={styles.media} fetchpriority="high" loading="eager" decoding="sync" />
         </picture>
       </div>
       
