@@ -65,3 +65,4 @@ optimize().catch(err => {
   console.error('Error optimizing assets:', err);
   process.exit(1);
 });
+
