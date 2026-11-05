@@ -71,3 +71,4 @@ export function sanitizeLog(data: unknown): string {
     return '[Unserializable data]';
   }
 }
+

@@ -263,3 +263,4 @@ function getEmbeddedSchemaSql(): string {
     CREATE INDEX IF NOT EXISTS idx_scheduled_reports_type ON scheduled_reports(report_type);
   `;
 }
+

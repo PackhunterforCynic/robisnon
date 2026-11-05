@@ -189,3 +189,4 @@ export class TelegramClient {
       .replace(/"/g, '&quot;');
   }
 }
+

@@ -37,3 +37,4 @@ export function trackCustomEvent(eventName: string, metadata?: Record<string, an
     window.PortfolioTracker.trackEvent(eventName, metadata);
   }
 }
+

@@ -137,3 +137,4 @@ export function extractReferrerDomain(referrer?: string): string | null {
     return null;
   }
 }
+

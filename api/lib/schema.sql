@@ -168,3 +168,4 @@ CREATE TABLE IF NOT EXISTS scheduled_reports (
 
 CREATE INDEX IF NOT EXISTS idx_scheduled_reports_sent_at ON scheduled_reports(sent_at DESC);
 CREATE INDEX IF NOT EXISTS idx_scheduled_reports_type ON scheduled_reports(report_type);
+
