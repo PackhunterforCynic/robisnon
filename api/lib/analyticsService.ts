@@ -4,6 +4,8 @@
  */
 
 import { query } from './db';
+import { appConfig } from './config';
+import { JsonAnalyticsStore } from './jsonStore';
 
 export interface OverviewMetrics {
   totalVisitors: number;
@@ -54,6 +56,9 @@ export class AnalyticsService {
    * Get metrics for a specific interval (e.g. 'today', 'yesterday', '7_days', '30_days', 'all_time')
    */
   static async getMetricsForPeriod(period: 'today' | 'yesterday' | '7_days' | '30_days' | 'all_time'): Promise<OverviewMetrics> {
+    if (!appConfig.databaseUrl) {
+      return JsonAnalyticsStore.getMetrics(period);
+    }
     let whereClause = '';
 
     if (period === 'today') {
@@ -107,6 +112,9 @@ export class AnalyticsService {
    * Get most popular pages
    */
   static async getTopPages(limit = 10, offset = 0, periodDays = 30): Promise<{ pages: PageStat[]; total: number }> {
+    if (!appConfig.databaseUrl) {
+      return JsonAnalyticsStore.getTopPages(limit, offset);
+    }
     try {
       const countRes = await query(`
         SELECT COUNT(DISTINCT path)::int AS total
@@ -145,6 +153,9 @@ export class AnalyticsService {
    * Get traffic sources & referrers
    */
   static async getReferrers(limit = 10, offset = 0, periodDays = 30): Promise<{ referrers: ReferrerStat[]; total: number }> {
+    if (!appConfig.databaseUrl) {
+      return JsonAnalyticsStore.getReferrers(limit, offset);
+    }
     try {
       const countRes = await query(`
         SELECT COUNT(DISTINCT COALESCE(referrer_domain, 'Direct'))::int AS total
@@ -192,6 +203,9 @@ export class AnalyticsService {
    * Device distribution
    */
   static async getDevices(periodDays = 30): Promise<DeviceStat[]> {
+    if (!appConfig.databaseUrl) {
+      return JsonAnalyticsStore.getDevices();
+    }
     try {
       const sql = `
         WITH dev_counts AS (
@@ -228,6 +242,9 @@ export class AnalyticsService {
    * Country distribution
    */
   static async getCountries(limit = 10, offset = 0, periodDays = 30): Promise<{ countries: CountryStat[]; total: number }> {
+    if (!appConfig.databaseUrl) {
+      return JsonAnalyticsStore.getCountries(limit, offset);
+    }
     try {
       const countRes = await query(`
         SELECT COUNT(DISTINCT country)::int AS total
@@ -275,6 +292,9 @@ export class AnalyticsService {
    * Realtime activity (last 30 minutes)
    */
   static async getRealtime(): Promise<RealtimeActivity> {
+    if (!appConfig.databaseUrl) {
+      return JsonAnalyticsStore.getRealtime();
+    }
     try {
       const statsRes = await query(`
         SELECT

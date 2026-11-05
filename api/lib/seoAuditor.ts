@@ -63,6 +63,7 @@ export interface FullAuditReport {
 
 export class SeoAuditor {
   private static readonly USER_AGENT = 'RobinsonSeoAuditor/1.0 (+https://robinsonj.vercel.app)';
+  private static cachedAudit: FullAuditReport | null = null;
 
   /**
    * Run a full SEO audit against the target website
@@ -150,7 +151,7 @@ export class SeoAuditor {
       console.error('[SeoAuditor] Failed to persist audit to DB:', err.message);
     }
 
-    return {
+    const report: FullAuditReport = {
       id: auditId,
       targetUrl: baseUrl,
       score,
@@ -164,12 +165,18 @@ export class SeoAuditor {
       auditedPages: uniqueUrls,
       createdAt: new Date().toISOString(),
     };
+    this.cachedAudit = report;
+
+    return report;
   }
 
   /**
    * Fetch the latest completed audit from the database
    */
   static async getLatestAudit(): Promise<FullAuditReport | null> {
+    if (!appConfig.databaseUrl) {
+      return this.cachedAudit;
+    }
     try {
       const res = await query(`
         SELECT id, url, score, pages_crawled, total_issues, critical_issues, warnings, info_count, summary_json, created_at

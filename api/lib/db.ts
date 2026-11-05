@@ -42,7 +42,14 @@ export async function query<T extends QueryResultRow = any>(
 ): Promise<QueryResult<T>> {
   const p = getDbPool();
   if (!p) {
-    throw new Error('DATABASE_URL is not configured. Please add it to your environment variables.');
+    // Return empty result when running in database-less mode
+    return {
+      rows: [] as T[],
+      command: '',
+      rowCount: 0,
+      oid: 0,
+      fields: [],
+    };
   }
 
   // Ensure tables exist on initial connection

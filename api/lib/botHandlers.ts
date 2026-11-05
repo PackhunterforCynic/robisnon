@@ -943,7 +943,7 @@ Please verify Service Account viewer permissions on property <code>${appConfig.g
 ⚙️ <b>SYSTEM & BOT SETTINGS</b>
 
 <b>Website:</b> <code>${TelegramClient.escapeHtml(appConfig.websiteUrl)}</code>
-<b>Database:</b> ${dbOk ? '✅ Connected (PostgreSQL)' : '❌ Missing DATABASE_URL'}
+<b>Storage Engine:</b> ${dbOk ? '✅ PostgreSQL Database' : '⚡ Zero-DB Mode (Instant Telegram Alerts & JSON Store)'}
 <b>Telegram Bot:</b> ${tgOk ? '✅ Active Webhook' : '❌ Missing Token'}
 <b>Authorized Admins:</b> ${adminsCount > 0 ? `✅ ${adminsCount} Admin(s)` : '⚠️ None'}
 <b>Google Search Console:</b> ${gscOk ? '✅ Configured' : '⚠️ Pending Credentials'}
