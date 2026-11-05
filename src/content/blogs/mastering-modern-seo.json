@@ -1,0 +1,55 @@
+{
+  "slug": "mastering-modern-seo",
+  "title": "Mastering Modern SEO: Structured Data, Core Web Vitals, and AI Search Discovery",
+  "subtitle": "How entity-based SEO and technical perfection drive organic search discovery in Google & beyond.",
+  "date": "2026-11-05",
+  "readTime": "7 min read",
+  "category": "SEO & Growth",
+  "author": "Robinson J.",
+  "heroImage": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2000&auto=format&fit=crop",
+  "excerpt": "Search algorithms in 2026 have shifted from keyword matching to entity understanding. Discover how JSON-LD structured data, strict canonicalization, and web performance guarantee top search ranking.",
+  "keywords": "SEO audit, technical SEO, JSON-LD schema, canonical URLs, Google Search Console, Google Discover, sitemap optimization",
+  "content": [
+    {
+      "type": "paragraph",
+      "text": "The days of keyword stuffing and low-quality backlink generation are long gone. Modern search engines index web experiences based on structured entity relationships, real-world user performance (Core Web Vitals), and transparent content authority."
+    },
+    {
+      "type": "heading",
+      "text": "1. Entity Recognition through JSON-LD Schemas"
+    },
+    {
+      "type": "paragraph",
+      "text": "Search engine crawlers understand context through schema.org microdata. By providing rich Person, WebSite, BlogPosting, and CreativeWork schemas, search engines immediately recognize Robinson J. as an authoritative Creative Technologist and Software Developer with verified social entities."
+    },
+    {
+      "type": "code",
+      "language": "json",
+      "text": "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"Person\",\n  \"name\": \"Robinson J.\",\n  \"jobTitle\": [\"Creative Technologist\", \"Software Developer\"],\n  \"sameAs\": [\n    \"https://linkedin.com/in/robinson-mj\",\n    \"https://github.com/PackhunterforCynic\"\n  ]\n}"
+    },
+    {
+      "type": "heading",
+      "text": "2. Zero Duplicate Content with Self-Referencing Canonicals"
+    },
+    {
+      "type": "paragraph",
+      "text": "Search engines heavily penalize websites that allow duplicate pages caused by trailing slashes (/projects vs /projects/), protocol variations (http vs https), or query parameter pollution. Implementing strict self-referencing canonical tags on every route ensures 100% link equity consolidation."
+    },
+    {
+      "type": "heading",
+      "text": "3. Web Stories & Google Discover Dominance"
+    },
+    {
+      "type": "paragraph",
+      "text": "Visual swipeable stories built in responsive HTML with full-screen imagery appear directly in Google Discover carousels and top mobile search feeds. They provide an immersive discovery channel that out-ranks traditional text snippets."
+    },
+    {
+      "type": "heading",
+      "text": "Key Takeaways"
+    },
+    {
+      "type": "paragraph",
+      "text": "Technical SEO is foundational. When combined with sub-second page delivery and compelling storytelling, your portfolio naturally climbs search rankings without costly advertising campaigns."
+    }
+  ]
+}

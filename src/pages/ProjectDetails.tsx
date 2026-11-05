@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { resolveImage } from '../utils/imageResolver';
+import { updateMetaTags } from '../utils/seo';
 import styles from './ProjectDetails.module.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -45,11 +46,25 @@ const ProjectDetails: React.FC = () => {
     if (!project) return;
 
     // Update SEO tags for the loaded project
-    document.title = `${project.title} | Robinson J.`;
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', project.overview);
-    }
+    updateMetaTags({
+      title: `${project.title} - ${project.subtitle} | Robinson J.`,
+      description: project.overview,
+      canonicalPath: `/projects/${project.id}`,
+      ogImage: resolveImage(project.heroImage),
+      keywords: `${project.title}, ${project.techStack.join(', ')}, ${project.roles.join(', ')}, Robinson J project`,
+      schema: {
+        '@context': 'https://schema.org',
+        '@type': 'CreativeWork',
+        name: project.title,
+        headline: project.subtitle,
+        description: project.overview,
+        image: resolveImage(project.heroImage),
+        author: {
+          '@type': 'Person',
+          name: 'Robinson J.',
+        },
+      },
+    });
 
     // Hero Parallax & Title Reveal
     if (heroRef.current && heroImageRef.current && titleRef.current) {

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { resolveImage } from '../utils/imageResolver';
+import { updateMetaTags } from '../utils/seo';
 import styles from './Projects.module.css';
 
 interface ProjectPreview {
@@ -15,11 +16,12 @@ const Projects: React.FC = () => {
   const [projects, setProjects] = useState<ProjectPreview[]>([]);
 
   useEffect(() => {
-    document.title = "All Projects | Robinson J.";
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', "A complete archive of software engineering and creative technology works by Robinson J.");
-    }
+    updateMetaTags({
+      title: 'Featured Works & Software Engineering Projects | Robinson J.',
+      description: 'Explore the complete archive of full-stack software applications, creative technology experiments, and commercial digital experiences built by Robinson J.',
+      canonicalPath: '/projects',
+      keywords: 'Robinson J projects, software portfolio, web applications, react engineering, creative technology portfolio',
+    });
 
     // Vite's import.meta.glob allows us to fetch all JSON files in the folder
     const modules = import.meta.glob('../content/projects/*.json');

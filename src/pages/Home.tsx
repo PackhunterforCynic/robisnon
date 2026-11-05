@@ -6,6 +6,7 @@ import Hero from '../components/Hero';
 import AboutSection from '../components/AboutSection';
 import FeaturedProjects from '../components/FeaturedProjects';
 import SkillsSection from '../components/SkillsSection';
+import { updateMetaTags } from '../utils/seo';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,11 +14,12 @@ const Home: React.FC = () => {
   const contactRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    document.title = "Robinson J. | Creative Technologist & Filmmaker";
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', "Portfolio of Robinson J., a Creative Technologist, Software Developer, and Cinematographer specializing in building modern web experiences and visual storytelling.");
-    }
+    updateMetaTags({
+      title: 'Robinson J. | Creative Technologist & Filmmaker',
+      description: 'Official portfolio of Robinson J., a Creative Technologist, Software Developer, and Cinematographer specializing in building modern web experiences and visual storytelling.',
+      canonicalPath: '/',
+      keywords: 'Robinson J, Creative Technologist, Software Engineer, Web Developer, Cinematographer, Frontend Developer, React, Portfolio',
+    });
     
     if (contactRef.current) {
       const elements = contactRef.current.children;

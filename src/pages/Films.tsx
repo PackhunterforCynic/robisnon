@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { updateMetaTags } from '../utils/seo';
 import styles from './Films.module.css';
 
 interface Film {
@@ -20,6 +21,13 @@ const Films: React.FC = () => {
   const [data, setData] = useState<FilmsData | null>(null);
 
   useEffect(() => {
+    updateMetaTags({
+      title: 'Films & Cinematography Archive | Robinson J.',
+      description: 'Explore narrative short films, wedding films, and commercial video reels directed and shot by Robinson J. using cinema cameras and prime glass.',
+      canonicalPath: '/films',
+      keywords: 'Robinson J films, cinematography portfolio, Sony FX3, director of photography, commercial films, visual narrative',
+    });
+
     import('../content/films.json').then((module) => {
       setData(module.default);
     });

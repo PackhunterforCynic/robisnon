@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { updateMetaTags } from '../utils/seo';
 import styles from './Skills.module.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -146,11 +147,12 @@ const Skills: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    document.title = "Skills | Robinson J.";
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', "A comprehensive overview of languages, frameworks, and tools used by Robinson J. to build robust software.");
-    }
+    updateMetaTags({
+      title: 'Skills & Technical Stack | Robinson J.',
+      description: 'A comprehensive overview of programming languages, frontend/backend frameworks, dev tools, and cinematography equipment mastered by Robinson J.',
+      canonicalPath: '/skills',
+      keywords: 'Robinson J skills, React, TypeScript, Node.js, GSAP, Next.js, cinematography gear, technical stack',
+    });
 
     import('../content/skills.json').then((module) => {
       setData(module.default);

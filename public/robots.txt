@@ -1,4 +1,15 @@
+# Optimized Robots.txt for Robinson J. Portfolio
+# Designed for maximum crawl efficiency across Googlebot, Bingbot, Applebot, and AI Search Engines
+
 User-agent: *
 Allow: /
+Disallow: /api/
+
+# Explicitly ensure static assets and sitemap are crawlable
+Allow: /assets/
+Allow: /favicon.*
+Allow: /*.webp$
+Allow: /*.jpg$
+Allow: /*.svg$
 
 Sitemap: https://robinsonj.vercel.app/sitemap.xml

@@ -1,0 +1,59 @@
+{
+  "slug": "building-cinematic-web-experiences",
+  "title": "Building Cinematic Web Experiences with React and GSAP",
+  "subtitle": "How blending filmmaking principles with frontend engineering elevates digital storytelling.",
+  "date": "2026-11-01",
+  "readTime": "6 min read",
+  "category": "Creative Technology",
+  "author": "Robinson J.",
+  "heroImage": "https://images.unsplash.com/photo-1518173946687-a4c8a383392e?q=80&w=2000&auto=format&fit=crop",
+  "excerpt": "Cinematography and software engineering share an underlying principle: directing the viewer's attention. Here is how to create fluid, cinematic web interactions using React, GSAP, and 60fps animations.",
+  "keywords": "GSAP animation, React performance, creative technologist, cinematography web design, frontend storytelling, smooth scroll Lenis",
+  "content": [
+    {
+      "type": "paragraph",
+      "text": "Every film director understands that rhythm, framing, and light dictate how an audience perceives emotion. When viewers enter a movie theater, they are guided by camera movement and focal shifts. Yet, for years, the web treated user interaction merely as static document navigation."
+    },
+    {
+      "type": "heading",
+      "text": "1. Pacing and The Illusion of Momentum"
+    },
+    {
+      "type": "paragraph",
+      "text": "In cinematography, a hard cut creates urgency, while a continuous dolly shot creates immersion. In web development, scroll-linked animations serve as our virtual camera rig. By combining Lenis smooth scrolling with GSAP ScrollTrigger, we transform abrupt browser jumps into organic camera glides."
+    },
+    {
+      "type": "code",
+      "language": "typescript",
+      "text": "gsap.to(cameraRef.current, {\n  yPercent: -20,\n  scale: 1.05,\n  ease: 'power2.out',\n  scrollTrigger: {\n    trigger: containerRef.current,\n    scrub: 1.2,\n    start: 'top top',\n    end: 'bottom top'\n  }\n});"
+    },
+    {
+      "type": "heading",
+      "text": "2. Lighting as Visual Hierarchy"
+    },
+    {
+      "type": "paragraph",
+      "text": "Chiaroscuro—the strong contrast between light and dark—is a cornerstone of cinematic aesthetics. On dark-mode websites, subtle gradients, spotlight cursors, and glow effects act as key lights. They naturally pull the eye toward call-to-actions without disruptive visual clutter."
+    },
+    {
+      "type": "heading",
+      "text": "3. The 60fps Requirement: Performance Before Style"
+    },
+    {
+      "type": "paragraph",
+      "text": "A cinematic effect that stutters or drops frames ruins the illusion immediately. To achieve a solid 100 Lighthouse performance score while preserving rich animations, always animate composite-only properties: transform (translate, scale, rotate) and opacity. Avoid animating layout properties like height, width, margin, or top/left."
+    },
+    {
+      "type": "quote",
+      "text": "Code is the projector; motion and typography are the story on screen."
+    },
+    {
+      "type": "heading",
+      "text": "Conclusion"
+    },
+    {
+      "type": "paragraph",
+      "text": "When developers think like cinematographers, web interfaces stop feeling like applications and start feeling like memorable digital journeys. Explore our featured projects to see these principles in production."
+    }
+  ]
+}

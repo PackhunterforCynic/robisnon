@@ -1,0 +1,46 @@
+{
+  "slug": "sub-second-web-performance",
+  "title": "5 Rules of Sub-Second Web Performance",
+  "subtitle": "How to Hit 100/100 Core Web Vitals",
+  "date": "2026-11-05",
+  "posterImage": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1200&auto=format&fit=crop",
+  "slides": [
+    {
+      "id": 1,
+      "tag": "PERFORMANCE",
+      "heading": "Rule 1: Convert to WebP & AVIF",
+      "text": "Never serve legacy PNGs or JPEGs for web assets. Modern WebP reduces file size by 80-90% with zero perceptible loss in visual fidelity.",
+      "image": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      "id": 2,
+      "tag": "CRITICAL PATH",
+      "heading": "Rule 2: Asynchronous Fonts",
+      "text": "Synchronous web fonts block screen rendering for up to 800ms. Load fonts with preloading and print media swaps to achieve instant First Contentful Paint.",
+      "image": "https://images.unsplash.com/photo-1518173946687-a4c8a383392e?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      "id": 3,
+      "tag": "LAYOUT STABILITY",
+      "heading": "Rule 3: Zero Layout Shifts (CLS)",
+      "text": "Always specify explicit width, height, and aspect-ratio attributes on every image container so browsers reserve layout boundaries before media loads.",
+      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      "id": 4,
+      "tag": "RENDER DELAY",
+      "heading": "Rule 4: Avoid Hiding Above-The-Fold",
+      "text": "Never set initial opacity to 0 with JavaScript on hero titles or hero imagery. Animate position and scale, but keep the initial paint immediate.",
+      "image": "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      "id": 5,
+      "tag": "RESULTS",
+      "heading": "Rule 5: Benchmark & Iterate",
+      "text": "Audit continuously with Lighthouse and Core Web Vitals to deliver a lightning-fast experience to every visitor on any network.",
+      "image": "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop",
+      "link": "/skills",
+      "linkText": "View Tech Stack"
+    }
+  ]
+}

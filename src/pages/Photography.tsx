@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { updateMetaTags } from '../utils/seo';
 import styles from './Photography.module.css';
 
 interface Photo {
@@ -20,6 +21,13 @@ const Photography: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState('All');
 
   useEffect(() => {
+    updateMetaTags({
+      title: 'Photography Portfolio & Visual Frames | Robinson J.',
+      description: 'Explore the visual photography portfolio of Robinson J. capturing portraits, landscapes, architecture, and street life through natural light and thoughtful composition.',
+      canonicalPath: '/photography',
+      keywords: 'Robinson J photography, portrait photography, architectural frames, visual gallery, aesthetic photography',
+    });
+
     import('../content/photography.json').then((module) => {
       setData(module.default);
     });

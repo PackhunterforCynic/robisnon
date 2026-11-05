@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { updateMetaTags } from '../utils/seo';
 import styles from './Contact.module.css';
 
 const Contact: React.FC = () => {
+  useEffect(() => {
+    updateMetaTags({
+      title: 'Contact Robinson J. | Hire Creative Technologist & Developer',
+      description: 'Get in touch with Robinson J. for full-stack software development projects, creative technology consultations, commercial filmmaking, or freelance opportunities.',
+      canonicalPath: '/contact',
+      keywords: 'Contact Robinson J, hire software engineer, freelance creative technologist, cinematographer contact Bengaluru, hire React developer',
+    });
+  }, []);
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Connect form to a service like Formspree, EmailJS, or backend API here

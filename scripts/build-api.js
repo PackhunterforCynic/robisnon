@@ -42,3 +42,4 @@ buildApi().catch(err => {
   console.error('[build-api] Build failed:', err);
   process.exit(1);
 });
+

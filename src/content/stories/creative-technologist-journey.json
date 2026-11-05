@@ -1,0 +1,46 @@
+{
+  "slug": "creative-technologist-journey",
+  "title": "The Creative Technologist Journey",
+  "subtitle": "Where Cinema Meets Code",
+  "date": "2026-11-05",
+  "posterImage": "https://images.unsplash.com/photo-1518173946687-a4c8a383392e?q=80&w=1200&auto=format&fit=crop",
+  "slides": [
+    {
+      "id": 1,
+      "tag": "PHILOSOPHY",
+      "heading": "Two Worlds, One Vision",
+      "text": "For Robinson J., engineering code and directing a cinema camera are not separate disciplines. They are two lenses focusing on the same craft: human connection.",
+      "image": "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      "id": 2,
+      "tag": "CINEMATOGRAPHY",
+      "heading": "The Power of Framing",
+      "text": "Every shot tells a story. From subtle ambient lighting to dynamic camera movements, visual storytelling captures emotion that words alone cannot express.",
+      "image": "https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      "id": 3,
+      "tag": "SOFTWARE ENGINEERING",
+      "heading": "Precision in Every Line",
+      "text": "Scalable web applications built with React, Vite, and GSAP. Sub-second performance, responsive layouts, and zero-PII analytics engineered for the modern web.",
+      "image": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      "id": 4,
+      "tag": "EXPERIENCE",
+      "heading": "The 60FPS Standard",
+      "text": "When motion feels as natural as reality, users engage deeply. No jank, no layout shifts—just pure, uninterrupted flow.",
+      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      "id": 5,
+      "tag": "COLLABORATION",
+      "heading": "Let's Create Together",
+      "text": "Whether you need a cutting-edge web platform or commercial cinematography that commands attention, let's bring your vision to life.",
+      "image": "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop",
+      "link": "/projects",
+      "linkText": "Explore Projects"
+    }
+  ]
+}
