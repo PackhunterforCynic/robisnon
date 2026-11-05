@@ -297,6 +297,10 @@ function prerender() {
       <h1>${safeH1}</h1>
       <p>${safeSummary}</p>
     </header>
+    <section>
+      <h2>Engineering &amp; Visual Storytelling Overview</h2>
+      <p>Discover interactive showcases, in-depth architectural articles, and visual design systems.</p>
+    </section>
     <nav aria-label="Primary Site Navigation">
       <a href="/">Home</a>
       <a href="/projects">Projects</a>
