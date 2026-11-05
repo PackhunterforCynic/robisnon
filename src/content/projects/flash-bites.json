@@ -2,7 +2,7 @@
   "id": "flash-bites",
   "title": "Flash Bites",
   "subtitle": "Scalable Food-Delivery Platform",
-  "heroImage": "/src/assets/flash-bites.png",
+  "heroImage": "/src/assets/flash-bites.webp",
   "overview": "Architected a scalable food-delivery system using client-server separation, stateless JWT authentication, and cloud-hosted MongoDB Atlas.",
   "roles": ["Software Engineer"],
   "techStack": ["React", "Vite", "Node.js", "Express", "MongoDB", "Razorpay"],

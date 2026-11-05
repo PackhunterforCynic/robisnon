@@ -17,23 +17,23 @@ const Hero: React.FC = () => {
     const tl = gsap.timeline();
 
     tl.fromTo(imgRef.current,
-      { scale: 1.1, opacity: 0 },
-      { scale: 1, opacity: 1, duration: 2, ease: 'power3.out' }
+      { scale: 1.08 },
+      { scale: 1, duration: 1.6, ease: 'power2.out' }
     )
     .fromTo(textRef.current, 
-      { opacity: 0, y: 50 }, 
-      { opacity: 1, y: 0, duration: 1.5, ease: 'power4.out' },
-      "-=1.5"
+      { y: 20, opacity: 0.8 }, 
+      { y: 0, opacity: 1, duration: 1.2, ease: 'power3.out' },
+      "-=1.2"
     )
     .fromTo(subRef.current,
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 1, ease: 'power3.out' },
-      "-=1"
+      { y: 10, opacity: 0.8 },
+      { y: 0, opacity: 1, duration: 0.8, ease: 'power2.out' },
+      "-=0.8"
     );
 
     // Continuous slow zoom for the image to prevent it from being "still"
     gsap.to(imgRef.current, {
-      scale: 1.05,
+      scale: 1.04,
       duration: 10,
       ease: 'sine.inOut',
       yoyo: true,
@@ -63,7 +63,17 @@ const Hero: React.FC = () => {
       <div className={styles.videoPlaceholder}>
         <picture>
           <source media="(max-width: 768px)" srcSet={mobileImg} />
-          <img ref={imgRef} src={heroImg} alt="Robinson J" className={styles.media} fetchPriority="high" loading="eager" decoding="sync" />
+          <img 
+            ref={imgRef} 
+            src={heroImg} 
+            alt="Robinson J" 
+            className={styles.media} 
+            fetchPriority="high" 
+            loading="eager" 
+            decoding="async" 
+            width="1920"
+            height="1080"
+          />
         </picture>
       </div>
       

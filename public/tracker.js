@@ -5,9 +5,11 @@
 (function () {
   'use strict';
 
-  // Check Opt-Out & Do Not Track
+  // Check Opt-Out & Do Not Track & Local Dev
   if (
     typeof window === 'undefined' ||
+    window.location.hostname === 'localhost' ||
+    window.location.hostname === '127.0.0.1' ||
     navigator.doNotTrack === '1' ||
     window.doNotTrack === '1' ||
     navigator.msDoNotTrack === '1' ||

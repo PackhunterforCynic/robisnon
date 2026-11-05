@@ -79,7 +79,15 @@ const FeaturedProjects: React.FC = () => {
           <Link key={project.id} to={`/projects/${project.id}`} className={`${styles.card} ${index % 2 !== 0 ? styles.reversed : ''}`}>
             <div className={styles.imageContent}>
               <div className={styles.imageWrapper}>
-                <img src={resolveImage(project.heroImage)} alt={project.title} className={styles.image} loading="lazy" />
+                <img 
+                  src={resolveImage(project.heroImage)} 
+                  alt={project.title} 
+                  className={styles.image} 
+                  loading="lazy" 
+                  decoding="async"
+                  width="800"
+                  height="500"
+                />
                 <div className={styles.overlay}>
                   <span className={styles.exploreText}>View Case Study</span>
                 </div>
