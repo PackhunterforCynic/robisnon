@@ -6,7 +6,7 @@
 import { AnalyticsService } from './analyticsService';
 import { SeoAuditor } from './seoAuditor';
 import { SearchConsoleService } from './searchConsole';
-import { config } from './config';
+import { appConfig } from './config';
 import { TelegramClient } from './telegram';
 
 export class ReportGenerator {
@@ -40,7 +40,7 @@ export class ReportGenerator {
 
     return `
 📊 <b>DAILY WEBSITE REPORT</b>
-🌐 <b>${TelegramClient.escapeHtml(config.websiteUrl)}</b>
+🌐 <b>${TelegramClient.escapeHtml(appConfig.websiteUrl)}</b>
 📅 <i>${new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' })} (UTC)</i>
 
 ━━━━━━━━━━━━━━━━━━━
@@ -91,7 +91,7 @@ ${referrersText}
 
     return `
 📈 <b>WEEKLY INTELLIGENCE REPORT</b>
-🌐 <b>${TelegramClient.escapeHtml(config.websiteUrl)}</b>
+🌐 <b>${TelegramClient.escapeHtml(appConfig.websiteUrl)}</b>
 📅 <i>Last 7 Days (UTC)</i>
 
 ━━━━━━━━━━━━━━━━━━━

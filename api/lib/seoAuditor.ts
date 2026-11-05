@@ -6,7 +6,7 @@
 
 import * as cheerio from 'cheerio';
 import { query } from './db';
-import { config } from './config';
+import { appConfig } from './config';
 
 export type IssueSeverity = 'CRITICAL' | 'WARNING' | 'INFO';
 
@@ -67,7 +67,7 @@ export class SeoAuditor {
   /**
    * Run a full SEO audit against the target website
    */
-  static async runAudit(siteUrl: string = config.websiteUrl): Promise<FullAuditReport> {
+  static async runAudit(siteUrl: string = appConfig.websiteUrl): Promise<FullAuditReport> {
     const baseUrl = siteUrl.replace(/\/+$/, '');
     const issues: SeoIssue[] = [];
     const auditedPageResults: PageAuditResult[] = [];

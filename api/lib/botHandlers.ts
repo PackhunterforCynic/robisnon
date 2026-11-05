@@ -9,7 +9,7 @@ import { SeoAuditor } from './seoAuditor';
 import { SearchConsoleService } from './searchConsole';
 import { ReportGenerator } from './reportGenerator';
 import { AlertService } from './alertService';
-import { config, isTelegramAdmin } from './config';
+import { appConfig, isTelegramAdmin } from './config';
 
 export class BotHandlers {
   /**
@@ -220,7 +220,7 @@ export class BotHandlers {
           { text: '⚡ Realtime', callback_data: 'nav:today' },
         ],
         [
-          { text: '🌐 View Website', url: config.websiteUrl },
+          { text: '🌐 View Website', url: appConfig.websiteUrl },
         ],
       ],
     };
@@ -231,7 +231,7 @@ export class BotHandlers {
 Your personal SEO Manager & Real-Time Analytics Dashboard.
 
 ✅ <b>Admin Authentication:</b> Verified
-🌐 <b>Tracked Site:</b> <code>${TelegramClient.escapeHtml(config.websiteUrl)}</code>
+🌐 <b>Tracked Site:</b> <code>${TelegramClient.escapeHtml(appConfig.websiteUrl)}</code>
 📡 <b>Engine:</b> Vercel Serverless + PostgreSQL
 
 Type /dashboard to open your interactive dashboard, or /help to see all commands.
@@ -286,7 +286,7 @@ Type /dashboard to open your interactive dashboard, or /help to see all commands
 
     const text = `
 📊 <b>VISITOR STATISTICS SUMMARY</b>
-🌐 <b>${TelegramClient.escapeHtml(config.websiteUrl)}</b>
+🌐 <b>${TelegramClient.escapeHtml(appConfig.websiteUrl)}</b>
 
 ━━━━━━━━━━━━━━━━━━━
 <b>Last 30 Days:</b>
@@ -334,7 +334,7 @@ Type /dashboard to open your interactive dashboard, or /help to see all commands
 
     const text = `
 ⚡ <b>REAL-TIME VISITOR ACTIVITY</b>
-🌐 <b>${TelegramClient.escapeHtml(config.websiteUrl)}</b>
+🌐 <b>${TelegramClient.escapeHtml(appConfig.websiteUrl)}</b>
 
 ━━━━━━━━━━━━━━━━━━━
 <b>Active Right Now (Last 30 min):</b>
@@ -402,7 +402,7 @@ ${recentList}
 
       const text = `
 🔑 <b>TOP ORGANIC SEARCH QUERIES</b>
-🌐 <b>${TelegramClient.escapeHtml(config.gscSiteUrl)}</b>
+🌐 <b>${TelegramClient.escapeHtml(appConfig.gscSiteUrl)}</b>
 📅 <i>Last 28 Days (Google Search Console)</i>
 
 ${queryList}
@@ -423,7 +423,7 @@ ${queryList}
     } catch (err: any) {
       await TelegramClient.sendMessage(
         chatId,
-        `⚠️ <b>Google Search Console API Error:</b>\n<code>${TelegramClient.escapeHtml(err.message)}</code>\n\nPlease ensure your Service Account has been added with 'Viewer' permissions on property <code>${config.gscSiteUrl}</code>.`
+        `⚠️ <b>Google Search Console API Error:</b>\n<code>${TelegramClient.escapeHtml(err.message)}</code>\n\nPlease ensure your Service Account has been added with 'Viewer' permissions on property <code>${appConfig.gscSiteUrl}</code>.`
       );
     }
   }
@@ -442,12 +442,12 @@ ${queryList}
 
     const text = `
 📑 <b>GOOGLE INDEXING STATUS</b>
-🌐 <b>${TelegramClient.escapeHtml(config.websiteUrl)}</b>
+🌐 <b>${TelegramClient.escapeHtml(appConfig.websiteUrl)}</b>
 
 ━━━━━━━━━━━━━━━━━━━
 <b>Indexing Architecture:</b>
 • <b>Robots.txt:</b> ${robotsStatus}
-• <b>Sitemap:</b> <code>${config.websiteUrl}/sitemap.xml</code>
+• <b>Sitemap:</b> <code>${appConfig.websiteUrl}/sitemap.xml</code>
 • <b>Known Public URLs:</b> ${pagesCount} pages
 • <b>Canonical URLs:</b> Configured on all routes
 
@@ -458,7 +458,7 @@ ${queryList}
   }
 
   private static async handleSitemap(chatId: number): Promise<void> {
-    const sitemapUrl = `${config.websiteUrl}/sitemap.xml`;
+    const sitemapUrl = `${appConfig.websiteUrl}/sitemap.xml`;
     try {
       const res = await fetch(sitemapUrl, { signal: AbortSignal.timeout(6000) });
       const text = await res.text();
@@ -508,7 +508,7 @@ ${content}
     await TelegramClient.sendChatAction(chatId, 'typing');
     const start = Date.now();
     try {
-      const res = await fetch(config.websiteUrl, {
+      const res = await fetch(appConfig.websiteUrl, {
         headers: { 'User-Agent': 'RobinsonSpeedAudit/1.0' },
         signal: AbortSignal.timeout(10000),
       });
@@ -518,7 +518,7 @@ ${content}
 
       const text = `
 ⚡ <b>WEBSITE PERFORMANCE AUDIT</b>
-🌐 <b>${TelegramClient.escapeHtml(config.websiteUrl)}</b>
+🌐 <b>${TelegramClient.escapeHtml(appConfig.websiteUrl)}</b>
 
 • <b>Server Response Time (TTFB):</b> ${ttfb}ms (${rating})
 • <b>HTTP Status:</b> ${res.status} OK
@@ -584,7 +584,7 @@ Alerts are sent automatically to configured admin Telegram accounts.
 
     const text = `
 📊 <b>WEBSITE ANALYTICS DASHBOARD</b>
-🌐 <b>${TelegramClient.escapeHtml(config.websiteUrl)}</b>
+🌐 <b>${TelegramClient.escapeHtml(appConfig.websiteUrl)}</b>
 
 <b>Today's Overview (UTC):</b>
 • <b>Visitors:</b> ${today.totalVisitors}
@@ -628,7 +628,7 @@ ${referrersText}
 
     const text = `
 📊 <b>${TelegramClient.escapeHtml(title)}</b>
-🌐 <b>${TelegramClient.escapeHtml(config.websiteUrl)}</b>
+🌐 <b>${TelegramClient.escapeHtml(appConfig.websiteUrl)}</b>
 
 • <b>Unique Visitors:</b> ${stats.totalVisitors}
 • <b>Total Page Views:</b> ${stats.totalPageViews}
@@ -672,7 +672,7 @@ ${referrersText}
 
     const text = `
 📄 <b>MOST VISITED PAGES</b>
-🌐 <b>${TelegramClient.escapeHtml(config.websiteUrl)}</b>
+🌐 <b>${TelegramClient.escapeHtml(appConfig.websiteUrl)}</b>
 📅 <i>Last 30 Days (Page ${currentPage}/${totalPages})</i>
 
 ${list}
@@ -713,7 +713,7 @@ ${list}
 
     const text = `
 🌐 <b>TRAFFIC SOURCES & REFERRERS</b>
-🌐 <b>${TelegramClient.escapeHtml(config.websiteUrl)}</b>
+🌐 <b>${TelegramClient.escapeHtml(appConfig.websiteUrl)}</b>
 📅 <i>Last 30 Days (Page ${currentPage}/${totalPages})</i>
 
 ${list}
@@ -750,7 +750,7 @@ ${list}
 
     const text = `
 📱 <b>DEVICE DISTRIBUTION</b>
-🌐 <b>${TelegramClient.escapeHtml(config.websiteUrl)}</b>
+🌐 <b>${TelegramClient.escapeHtml(appConfig.websiteUrl)}</b>
 📅 <i>Last 30 Days</i>
 
 ${list}
@@ -784,7 +784,7 @@ ${list}
 
     const text = `
 🌍 <b>VISITOR COUNTRIES</b>
-🌐 <b>${TelegramClient.escapeHtml(config.websiteUrl)}</b>
+🌐 <b>${TelegramClient.escapeHtml(appConfig.websiteUrl)}</b>
 📅 <i>Last 30 Days (Page ${currentPage}/${totalPages})</i>
 
 ${list}
@@ -861,7 +861,7 @@ ${issuesText}
     if (!isConfig) {
       const text = `
 📈 <b>GOOGLE SEARCH CONSOLE</b>
-🌐 <b>${TelegramClient.escapeHtml(config.gscSiteUrl)}</b>
+🌐 <b>${TelegramClient.escapeHtml(appConfig.gscSiteUrl)}</b>
 
 Google Search Console credentials are not yet configured.
 
@@ -892,7 +892,7 @@ Google Search Console credentials are not yet configured.
 
       const text = `
 📈 <b>GOOGLE SEARCH CONSOLE REPORT</b>
-🌐 <b>${TelegramClient.escapeHtml(config.gscSiteUrl)}</b>
+🌐 <b>${TelegramClient.escapeHtml(appConfig.gscSiteUrl)}</b>
 📅 <i>Last ${days} Days</i>
 
 • <b>Total Organic Clicks:</b> ${gsc.clicks}
@@ -921,7 +921,7 @@ ${topQueryText}
 ⚠️ <b>Google Search Console API Notice:</b>
 <code>${TelegramClient.escapeHtml(err.message)}</code>
 
-Please verify Service Account viewer permissions on property <code>${config.gscSiteUrl}</code>.
+Please verify Service Account viewer permissions on property <code>${appConfig.gscSiteUrl}</code>.
 `.trim();
 
       const keyboard: InlineKeyboardMarkup = {
@@ -934,15 +934,15 @@ Please verify Service Account viewer permissions on property <code>${config.gscS
   }
 
   private static async renderSettings(): Promise<{ text: string; reply_markup: InlineKeyboardMarkup }> {
-    const dbOk = Boolean(config.databaseUrl);
-    const tgOk = Boolean(config.telegramBotToken);
-    const adminsCount = config.telegramAdminIds.length;
+    const dbOk = Boolean(appConfig.databaseUrl);
+    const tgOk = Boolean(appConfig.telegramBotToken);
+    const adminsCount = appConfig.telegramAdminIds.length;
     const gscOk = SearchConsoleService.isConfigured();
 
     const text = `
 ⚙️ <b>SYSTEM & BOT SETTINGS</b>
 
-<b>Website:</b> <code>${TelegramClient.escapeHtml(config.websiteUrl)}</code>
+<b>Website:</b> <code>${TelegramClient.escapeHtml(appConfig.websiteUrl)}</code>
 <b>Database:</b> ${dbOk ? '✅ Connected (PostgreSQL)' : '❌ Missing DATABASE_URL'}
 <b>Telegram Bot:</b> ${tgOk ? '✅ Active Webhook' : '❌ Missing Token'}
 <b>Authorized Admins:</b> ${adminsCount > 0 ? `✅ ${adminsCount} Admin(s)` : '⚠️ None'}

@@ -31,7 +31,7 @@ function cleanPrivateKey(raw?: string): string | undefined {
   return raw.replace(/\\n/g, '\n');
 }
 
-export const config: AppConfig = {
+export const appConfig: AppConfig = {
   databaseUrl: process.env.DATABASE_URL || '',
   telegramBotToken: process.env.TELEGRAM_BOT_TOKEN || '',
   telegramAdminIds: parseAdminIds(process.env.TELEGRAM_ADMIN_IDS),
@@ -49,12 +49,12 @@ export const config: AppConfig = {
  * Checks if a given Telegram user ID is authorized as an administrator.
  */
 export function isTelegramAdmin(userId: number | string): boolean {
-  if (!config.telegramAdminIds || config.telegramAdminIds.length === 0) {
+  if (!appConfig.telegramAdminIds || appConfig.telegramAdminIds.length === 0) {
     // If no admin IDs are configured yet, inform or allow bootstrap
     return false;
   }
   const idStr = String(userId).trim();
-  return config.telegramAdminIds.includes(idStr);
+  return appConfig.telegramAdminIds.includes(idStr);
 }
 
 /**

@@ -5,7 +5,7 @@
  */
 
 import { google } from 'googleapis';
-import { config } from './config';
+import { appConfig } from './config';
 import { query } from './db';
 
 export interface GscOverviewMetrics {
@@ -36,9 +36,9 @@ export class SearchConsoleService {
   private static getClient() {
     let auth;
 
-    if (config.googleCredentialsJson) {
+    if (appConfig.googleCredentialsJson) {
       try {
-        const credentials = JSON.parse(config.googleCredentialsJson);
+        const credentials = JSON.parse(appConfig.googleCredentialsJson);
         auth = new google.auth.GoogleAuth({
           credentials,
           scopes: ['https://www.googleapis.com/auth/webmasters.readonly'],
@@ -48,10 +48,10 @@ export class SearchConsoleService {
       }
     }
 
-    if (!auth && config.googleClientEmail && config.googlePrivateKey) {
+    if (!auth && appConfig.googleClientEmail && appConfig.googlePrivateKey) {
       auth = new google.auth.JWT({
-        email: config.googleClientEmail,
-        key: config.googlePrivateKey,
+        email: appConfig.googleClientEmail,
+        key: appConfig.googlePrivateKey,
         scopes: ['https://www.googleapis.com/auth/webmasters.readonly'],
       });
     }
@@ -68,8 +68,8 @@ export class SearchConsoleService {
    */
   static isConfigured(): boolean {
     return Boolean(
-      config.googleCredentialsJson ||
-      (config.googleClientEmail && config.googlePrivateKey)
+      appConfig.googleCredentialsJson ||
+      (appConfig.googleClientEmail && appConfig.googlePrivateKey)
     );
   }
 
@@ -123,7 +123,7 @@ export class SearchConsoleService {
     const startDateStr = startDateObj.toISOString().split('T')[0];
 
     try {
-      const siteUrl = config.gscSiteUrl;
+      const siteUrl = appConfig.gscSiteUrl;
 
       // 1. Fetch Top Queries
       const queryRes = await client.searchanalytics.query({

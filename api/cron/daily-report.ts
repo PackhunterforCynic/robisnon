@@ -7,13 +7,13 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { ReportGenerator } from '../lib/reportGenerator';
 import { AlertService } from '../lib/alertService';
 import { TelegramClient } from '../lib/telegram';
-import { config } from '../lib/config';
+import { appConfig } from '../lib/config';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   // Verify Vercel Cron Secret (if configured)
-  if (config.cronSecret) {
+  if (appConfig.cronSecret) {
     const authHeader = req.headers['authorization'];
-    if (authHeader !== `Bearer ${config.cronSecret}`) {
+    if (authHeader !== `Bearer ${appConfig.cronSecret}`) {
       return res.status(401).json({ error: 'Unauthorized cron trigger' });
     }
   }
@@ -28,7 +28,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const reportText = await ReportGenerator.buildDailyReport();
 
     let sentCount = 0;
-    for (const adminId of config.telegramAdminIds) {
+    for (const adminId of appConfig.telegramAdminIds) {
       try {
         await TelegramClient.sendMessage(adminId, reportText);
         sentCount++;

@@ -5,7 +5,7 @@
 
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { BotHandlers } from '../lib/botHandlers';
-import { config, sanitizeLog } from '../lib/config';
+import { appConfig, sanitizeLog } from '../lib/config';
 
 // In-memory cache to deduplicate Telegram updates during retries
 const processedUpdateIds = new Set<number>();
@@ -25,9 +25,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   // 1. Verify Telegram Webhook Secret Token (if configured)
-  if (config.telegramWebhookSecret) {
+  if (appConfig.telegramWebhookSecret) {
     const incomingSecret = req.headers['x-telegram-bot-api-secret-token'];
-    if (incomingSecret !== config.telegramWebhookSecret) {
+    if (incomingSecret !== appConfig.telegramWebhookSecret) {
       console.warn('[Webhook] Unauthorized webhook request rejected.');
       return res.status(401).json({ error: 'Unauthorized' });
     }

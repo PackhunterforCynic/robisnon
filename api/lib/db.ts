@@ -4,21 +4,21 @@
  */
 
 import { Pool, QueryResult, QueryResultRow } from 'pg';
-import { config } from './config';
+import { appConfig } from './config';
 
 let pool: Pool | null = null;
 let initialized = false;
 
 export function getDbPool(): Pool | null {
-  if (!config.databaseUrl) {
+  if (!appConfig.databaseUrl) {
     return null;
   }
 
   if (!pool) {
     // Configure SSL appropriately for cloud PostgreSQL hosts
-    const isLocalhost = config.databaseUrl.includes('localhost') || config.databaseUrl.includes('127.0.0.1');
+    const isLocalhost = appConfig.databaseUrl.includes('localhost') || appConfig.databaseUrl.includes('127.0.0.1');
     pool = new Pool({
-      connectionString: config.databaseUrl,
+      connectionString: appConfig.databaseUrl,
       ssl: isLocalhost ? false : { rejectUnauthorized: false },
       max: 10,
       idleTimeoutMillis: 30000,

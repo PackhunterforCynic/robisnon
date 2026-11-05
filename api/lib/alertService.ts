@@ -4,7 +4,7 @@
  */
 
 import { TelegramClient } from './telegram';
-import { config } from './config';
+import { appConfig } from './config';
 import { query } from './db';
 
 export class AlertService {
@@ -12,7 +12,7 @@ export class AlertService {
    * Broadcast an alert message to all configured Telegram admin IDs
    */
   static async sendAdminAlert(title: string, message: string, alertType: string): Promise<void> {
-    if (!config.telegramAdminIds || config.telegramAdminIds.length === 0) return;
+    if (!appConfig.telegramAdminIds || appConfig.telegramAdminIds.length === 0) return;
 
     // Avoid alert spam: check if identical alert was sent in the last 2 hours
     try {
@@ -32,13 +32,13 @@ export class AlertService {
 
     const formatted = `
 🚨 <b>WEBSITE ALERT: ${TelegramClient.escapeHtml(title)}</b>
-🌐 <b>${TelegramClient.escapeHtml(config.websiteUrl)}</b>
+🌐 <b>${TelegramClient.escapeHtml(appConfig.websiteUrl)}</b>
 ⏱️ <i>${new Date().toISOString()}</i>
 
 ${message}
 `.trim();
 
-    for (const adminId of config.telegramAdminIds) {
+    for (const adminId of appConfig.telegramAdminIds) {
       try {
         await TelegramClient.sendMessage(adminId, formatted);
         await query(
@@ -58,7 +58,7 @@ ${message}
   static async checkWebsiteUptime(): Promise<{ isUp: boolean; statusCode: number; responseTimeMs: number }> {
     const start = Date.now();
     try {
-      const res = await fetch(config.websiteUrl, {
+      const res = await fetch(appConfig.websiteUrl, {
         method: 'GET',
         headers: { 'User-Agent': 'RobinsonUptimeMonitor/1.0' },
         signal: AbortSignal.timeout(10000),
@@ -89,7 +89,7 @@ ${message}
    * Check Sitemap Health
    */
   static async checkSitemapHealth(): Promise<boolean> {
-    const sitemapUrl = `${config.websiteUrl}/sitemap.xml`;
+    const sitemapUrl = `${appConfig.websiteUrl}/sitemap.xml`;
     try {
       const res = await fetch(sitemapUrl, {
         signal: AbortSignal.timeout(8000),

@@ -6,27 +6,27 @@
 
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { TelegramClient } from '../lib/telegram';
-import { config } from '../lib/config';
+import { appConfig } from '../lib/config';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   const action = req.query.action || 'info';
 
-  if (!config.telegramBotToken) {
+  if (!appConfig.telegramBotToken) {
     return res.status(500).json({
       error: 'TELEGRAM_BOT_TOKEN is not configured in environment variables.',
       instructions: 'Please add TELEGRAM_BOT_TOKEN to your Vercel Project Settings.',
     });
   }
 
-  const webhookUrl = `${config.websiteUrl}/api/telegram/webhook`;
+  const webhookUrl = `${appConfig.websiteUrl}/api/telegram/webhook`;
 
   try {
     if (action === 'set') {
-      const result = await TelegramClient.setWebhook(webhookUrl, config.telegramWebhookSecret || undefined);
+      const result = await TelegramClient.setWebhook(webhookUrl, appConfig.telegramWebhookSecret || undefined);
       return res.status(200).json({
         action: 'setWebhook',
         targetWebhookUrl: webhookUrl,
-        hasSecretToken: Boolean(config.telegramWebhookSecret),
+        hasSecretToken: Boolean(appConfig.telegramWebhookSecret),
         result,
       });
     }
@@ -34,7 +34,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     // Default: Return current webhook info
     const info = await TelegramClient.getWebhookInfo();
     return res.status(200).json({
-      configuredWebsiteUrl: config.websiteUrl,
+      configuredWebsiteUrl: appConfig.websiteUrl,
       expectedWebhookUrl: webhookUrl,
       currentWebhookInfo: info,
       instructions: 'To register or update the webhook, call this endpoint with ?action=set',

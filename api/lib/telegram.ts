@@ -3,7 +3,7 @@
  * Zero external bot dependencies - pure, robust, serverless-optimized HTTP client.
  */
 
-import { config } from './config';
+import { appConfig } from './config';
 
 export interface InlineKeyboardButton {
   text: string;
@@ -23,10 +23,10 @@ export interface SendMessageOptions {
 
 export class TelegramClient {
   private static getApiUrl(method: string): string {
-    if (!config.telegramBotToken) {
+    if (!appConfig.telegramBotToken) {
       throw new Error('TELEGRAM_BOT_TOKEN is not configured.');
     }
-    return `https://api.telegram.org/bot${config.telegramBotToken}/${method}`;
+    return `https://api.telegram.org/bot${appConfig.telegramBotToken}/${method}`;
   }
 
   /**
