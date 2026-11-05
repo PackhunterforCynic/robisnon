@@ -1478,12 +1478,24 @@ var SearchConsoleService = class {
     if (appConfig.googleCredentialsJson) {
       try {
         const credentials = JSON.parse(appConfig.googleCredentialsJson);
-        auth = new google.auth.GoogleAuth({
-          credentials,
-          scopes: ["https://www.googleapis.com/auth/webmasters.readonly"]
-        });
+        if (credentials.client_email && (credentials.private_key || credentials.private_key_id)) {
+          auth = new google.auth.GoogleAuth({
+            credentials,
+            scopes: ["https://www.googleapis.com/auth/webmasters.readonly"]
+          });
+        } else if (credentials.web) {
+          auth = new google.auth.OAuth2(
+            credentials.web.client_id,
+            credentials.web.client_secret
+          );
+        } else {
+          auth = new google.auth.GoogleAuth({
+            credentials,
+            scopes: ["https://www.googleapis.com/auth/webmasters.readonly"]
+          });
+        }
       } catch (err) {
-        console.error("[GSC] Error parsing GOOGLE_APPLICATION_CREDENTIALS_JSON:", err.message);
+        console.warn("[GSC] Notice for GOOGLE_APPLICATION_CREDENTIALS_JSON:", err.message);
       }
     }
     if (!auth && appConfig.googleClientEmail && appConfig.googlePrivateKey) {
