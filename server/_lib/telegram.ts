@@ -178,6 +178,29 @@ export class TelegramClient {
   }
 
   /**
+   * Render an ASCII progress bar for metrics and ratings
+   */
+  static renderProgressBar(value: number, max = 100, length = 10): string {
+    if (max <= 0) return '░'.repeat(length);
+    const ratio = Math.max(0, Math.min(1, value / max));
+    const filled = Math.round(ratio * length);
+    return '█'.repeat(filled) + '░'.repeat(length - filled);
+  }
+
+  /**
+   * Convert ISO country code into national flag emoji
+   */
+  static getCountryFlag(code?: string): string {
+    if (!code || code === 'XX' || code.length !== 2) return '🌐';
+    try {
+      const upper = code.toUpperCase();
+      return String.fromCodePoint(127397 + upper.charCodeAt(0)) + String.fromCodePoint(127397 + upper.charCodeAt(1));
+    } catch {
+      return '🌐';
+    }
+  }
+
+  /**
    * Escape HTML special characters for safe inclusion in Telegram messages
    */
   static escapeHtml(str?: string): string {

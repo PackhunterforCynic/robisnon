@@ -683,6 +683,27 @@ var TelegramClient = class {
     return res.json();
   }
   /**
+   * Render an ASCII progress bar for metrics and ratings
+   */
+  static renderProgressBar(value, max = 100, length = 10) {
+    if (max <= 0) return "\u2591".repeat(length);
+    const ratio = Math.max(0, Math.min(1, value / max));
+    const filled = Math.round(ratio * length);
+    return "\u2588".repeat(filled) + "\u2591".repeat(length - filled);
+  }
+  /**
+   * Convert ISO country code into national flag emoji
+   */
+  static getCountryFlag(code) {
+    if (!code || code === "XX" || code.length !== 2) return "\u{1F310}";
+    try {
+      const upper = code.toUpperCase();
+      return String.fromCodePoint(127397 + upper.charCodeAt(0)) + String.fromCodePoint(127397 + upper.charCodeAt(1));
+    } catch {
+      return "\u{1F310}";
+    }
+  }
+  /**
    * Escape HTML special characters for safe inclusion in Telegram messages
    */
   static escapeHtml(str) {
@@ -747,16 +768,30 @@ async function handler(req, res) {
       durationSeconds: payload.durationSeconds
     });
     if (isNewSession && appConfig.telegramBotToken && appConfig.telegramAdminIds.length > 0) {
+      const flag = TelegramClient.getCountryFlag(country);
+      const cleanUrl = `${appConfig.websiteUrl}${payload.path === "/" ? "" : payload.path}`;
       const alertMsg = `
-\u{1F514} <b>New Website Visitor!</b>
-\u{1F310} <b>${TelegramClient.escapeHtml(appConfig.websiteUrl)}</b>
-\u{1F4CD} <b>Page:</b> <code>${TelegramClient.escapeHtml(payload.path)}</code>
-\u{1F30D} <b>Country:</b> ${country}
-\u{1F4BB} <b>Device:</b> ${payload.deviceCategory} (${payload.browser} on ${payload.os})
-\u{1F517} <b>Source:</b> ${referrerDomain}${payload.utmSource ? ` (UTM: ${payload.utmSource})` : ""}
+\u26A1 <b>REAL-TIME VISITOR ACTIVITY</b>
+\u{1F310} <code>${TelegramClient.escapeHtml(appConfig.websiteUrl)}</code> \u2022 <b>\u25CF ACTIVE</b>
+
+<pre>
+ROUTE    : ${payload.path}
+ORIGIN   : ${flag} ${country}
+DEVICE   : ${payload.deviceCategory} (${payload.browser} / ${payload.os})
+SOURCE   : ${referrerDomain}${payload.utmSource ? ` [UTM: ${payload.utmSource}]` : ""}
+SESSION  : New First-Time Visitor
+</pre>
 `.trim();
+      const keyboard = {
+        inline_keyboard: [
+          [
+            { text: "\u{1F4CA} Dashboard", callback_data: "nav:dashboard" },
+            { text: "\u{1F310} Open Route \u2197", url: cleanUrl }
+          ]
+        ]
+      };
       for (const adminId of appConfig.telegramAdminIds) {
-        TelegramClient.sendMessage(adminId, alertMsg).catch(() => {
+        TelegramClient.sendMessage(adminId, alertMsg, { reply_markup: keyboard }).catch(() => {
         });
       }
     }

@@ -89,17 +89,32 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     // 2. Send instant real-time Telegram alert to admin on new visitor session
     if (isNewSession && appConfig.telegramBotToken && appConfig.telegramAdminIds.length > 0) {
+      const flag = TelegramClient.getCountryFlag(country);
+      const cleanUrl = `${appConfig.websiteUrl}${payload.path === '/' ? '' : payload.path}`;
       const alertMsg = `
-🔔 <b>New Website Visitor!</b>
-🌐 <b>${TelegramClient.escapeHtml(appConfig.websiteUrl)}</b>
-📍 <b>Page:</b> <code>${TelegramClient.escapeHtml(payload.path)}</code>
-🌍 <b>Country:</b> ${country}
-💻 <b>Device:</b> ${payload.deviceCategory} (${payload.browser} on ${payload.os})
-🔗 <b>Source:</b> ${referrerDomain}${payload.utmSource ? ` (UTM: ${payload.utmSource})` : ''}
+⚡ <b>REAL-TIME VISITOR ACTIVITY</b>
+🌐 <code>${TelegramClient.escapeHtml(appConfig.websiteUrl)}</code> • <b>● ACTIVE</b>
+
+<pre>
+ROUTE    : ${payload.path}
+ORIGIN   : ${flag} ${country}
+DEVICE   : ${payload.deviceCategory} (${payload.browser} / ${payload.os})
+SOURCE   : ${referrerDomain}${payload.utmSource ? ` [UTM: ${payload.utmSource}]` : ''}
+SESSION  : New First-Time Visitor
+</pre>
 `.trim();
 
+      const keyboard = {
+        inline_keyboard: [
+          [
+            { text: '📊 Dashboard', callback_data: 'nav:dashboard' },
+            { text: '🌐 Open Route ↗', url: cleanUrl },
+          ],
+        ],
+      };
+
       for (const adminId of appConfig.telegramAdminIds) {
-        TelegramClient.sendMessage(adminId, alertMsg).catch(() => {});
+        TelegramClient.sendMessage(adminId, alertMsg, { reply_markup: keyboard }).catch(() => {});
       }
     }
 

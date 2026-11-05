@@ -948,6 +948,27 @@ var TelegramClient = class {
     return res.json();
   }
   /**
+   * Render an ASCII progress bar for metrics and ratings
+   */
+  static renderProgressBar(value, max = 100, length = 10) {
+    if (max <= 0) return "\u2591".repeat(length);
+    const ratio = Math.max(0, Math.min(1, value / max));
+    const filled = Math.round(ratio * length);
+    return "\u2588".repeat(filled) + "\u2591".repeat(length - filled);
+  }
+  /**
+   * Convert ISO country code into national flag emoji
+   */
+  static getCountryFlag(code) {
+    if (!code || code === "XX" || code.length !== 2) return "\u{1F310}";
+    try {
+      const upper = code.toUpperCase();
+      return String.fromCodePoint(127397 + upper.charCodeAt(0)) + String.fromCodePoint(127397 + upper.charCodeAt(1));
+    } catch {
+      return "\u{1F310}";
+    }
+  }
+  /**
    * Escape HTML special characters for safe inclusion in Telegram messages
    */
   static escapeHtml(str) {
