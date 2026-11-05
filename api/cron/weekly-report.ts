@@ -4,10 +4,10 @@
  */
 
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { ReportGenerator } from '../lib/reportGenerator';
-import { TelegramClient } from '../lib/telegram';
-import { appConfig } from '../lib/config';
-import { runDataRetentionCleanup } from '../lib/db';
+import { ReportGenerator } from '../_lib/reportGenerator';
+import { TelegramClient } from '../_lib/telegram';
+import { appConfig } from '../_lib/config';
+import { runDataRetentionCleanup } from '../_lib/db';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   // Verify Vercel Cron Secret (if configured)

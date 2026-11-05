@@ -5,11 +5,11 @@
  */
 
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { query } from './lib/db';
-import { isBotOrCrawler, validateTrackingPayload, extractReferrerDomain } from './lib/botFilter';
-import { JsonAnalyticsStore } from './lib/jsonStore';
-import { appConfig } from './lib/config';
-import { TelegramClient } from './lib/telegram';
+import { query } from './_lib/db';
+import { isBotOrCrawler, validateTrackingPayload, extractReferrerDomain } from './_lib/botFilter';
+import { JsonAnalyticsStore } from './_lib/jsonStore';
+import { appConfig } from './_lib/config';
+import { TelegramClient } from './_lib/telegram';
 
 // In-memory deduplication cache for rapid duplicate calls
 const recentEvents = new Map<string, number>();

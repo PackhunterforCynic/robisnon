@@ -4,8 +4,8 @@
  */
 
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { BotHandlers } from '../lib/botHandlers';
-import { appConfig, sanitizeLog } from '../lib/config';
+import { BotHandlers } from '../_lib/botHandlers';
+import { appConfig, sanitizeLog } from '../_lib/config';
 
 // In-memory cache to deduplicate Telegram updates during retries
 const processedUpdateIds = new Set<number>();

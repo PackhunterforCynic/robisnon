@@ -4,9 +4,9 @@
  */
 
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { SeoAuditor } from '../lib/seoAuditor';
-import { AlertService } from '../lib/alertService';
-import { appConfig } from '../lib/config';
+import { SeoAuditor } from '../_lib/seoAuditor';
+import { AlertService } from '../_lib/alertService';
+import { appConfig } from '../_lib/config';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   // Verify Vercel Cron Secret (if configured)

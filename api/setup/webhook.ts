@@ -5,8 +5,8 @@
  */
 
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { TelegramClient } from '../lib/telegram';
-import { appConfig } from '../lib/config';
+import { TelegramClient } from '../_lib/telegram';
+import { appConfig } from '../_lib/config';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   const action = req.query.action || 'info';
