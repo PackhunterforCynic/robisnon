@@ -4,6 +4,13 @@ import { SmoothScrollProvider } from './contexts/SmoothScrollContext';
 import { AnimatePresence } from 'framer-motion';
 import Navigation from './components/Navigation';
 import WhatsAppFab from './components/WhatsAppFab';
+import { usePageTracking } from './utils/tracker';
+
+// Route tracking component inside Router
+const RouteTracker: React.FC = () => {
+  usePageTracking();
+  return null;
+};
 
 // Lazy load pages for performance
 const Home = lazy(() => import('./pages/Home'));
@@ -16,6 +23,7 @@ const App: React.FC = () => {
   return (
     <SmoothScrollProvider>
       <Router>
+        <RouteTracker />
         <Navigation />
         <Suspense fallback={<div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff' }}>Loading...</div>}>
           <AnimatePresence mode="wait">

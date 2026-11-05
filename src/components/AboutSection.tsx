@@ -24,7 +24,7 @@ const AboutSection: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (data && textRef.current) {
+    if (data && textRef.current && containerRef.current) {
       const elements = containerRef.current.querySelectorAll(`.${styles.heading}, .${styles.bio}, .${styles.roles}, .${styles.narrative} p`);
       
       gsap.fromTo(elements, 

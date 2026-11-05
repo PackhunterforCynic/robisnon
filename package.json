@@ -6,16 +6,21 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "migrate": "node scripts/migrate.js",
+    "set-webhook": "node scripts/set-webhook.js",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
     "@gsap/react": "^2.1.1",
     "@studio-freight/lenis": "^1.0.42",
+    "cheerio": "^1.2.0",
     "clsx": "^2.1.1",
     "framer-motion": "^11.11.9",
+    "googleapis": "^189.0.0",
     "gsap": "^3.12.5",
     "lucide-react": "^0.453.0",
+    "pg": "^8.23.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.27.0",
@@ -23,8 +28,10 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
+    "@types/pg": "^8.23.1",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.1",
+    "@vercel/node": "^29.0.1",
     "@vitejs/plugin-react": "^4.3.3",
     "eslint": "^9.13.0",
     "eslint-plugin-react-hooks": "^5.0.0",

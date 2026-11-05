@@ -71,7 +71,7 @@ const ProjectDetails: React.FC = () => {
     }
 
     // Story Parallax & Fades
-    storyRefs.current.forEach((el, index) => {
+    storyRefs.current.forEach((el) => {
       if (el) {
         gsap.fromTo(el,
           { opacity: 0, y: 100 },
