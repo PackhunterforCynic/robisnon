@@ -131,3 +131,4 @@ export function updateMetaTags(props: SEOProps): void {
   const finalSchema = schema ? (Array.isArray(schema) ? [...defaultSchemas, ...schema] : [...defaultSchemas, schema]) : defaultSchemas;
   scriptTag.textContent = JSON.stringify(finalSchema);
 }
+
