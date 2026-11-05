@@ -5,8 +5,6 @@
 
 import { Pool, QueryResult, QueryResultRow } from 'pg';
 import { config } from './config';
-import fs from 'fs';
-import path from 'path';
 
 let pool: Pool | null = null;
 let initialized = false;

@@ -10,7 +10,6 @@ import { SearchConsoleService } from './searchConsole';
 import { ReportGenerator } from './reportGenerator';
 import { AlertService } from './alertService';
 import { config, isTelegramAdmin } from './config';
-import { query } from './db';
 
 export class BotHandlers {
   /**

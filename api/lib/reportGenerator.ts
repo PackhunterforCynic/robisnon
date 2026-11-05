@@ -84,6 +84,7 @@ ${referrersText}
 
     let deviceText = devices.map(d => `• ${d.device}: ${d.percentage}% (${d.count})`).join('\n') || 'No device data';
     let topPagesText = pages.map((p, i) => `${i + 1}. <code>${TelegramClient.escapeHtml(p.path)}</code>: ${p.views} views`).join('\n') || 'None';
+    let referrersText = referrers.map(r => `• ${TelegramClient.escapeHtml(r.domain)}: ${r.count} (${r.percentage}%)`).join('\n') || 'Direct';
 
     const seoScore = latestAudit ? `${latestAudit.score}/100` : 'Not audited';
     const seoIssues = latestAudit ? `(Critical: ${latestAudit.criticalIssues}, Warnings: ${latestAudit.warnings})` : '';
@@ -103,6 +104,10 @@ ${referrersText}
 ━━━━━━━━━━━━━━━━━━━
 <b>Top Pages:</b>
 ${topPagesText}
+
+━━━━━━━━━━━━━━━━━━━
+<b>Top Traffic Sources:</b>
+${referrersText}
 
 ━━━━━━━━━━━━━━━━━━━
 <b>Devices:</b>

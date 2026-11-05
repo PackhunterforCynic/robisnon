@@ -6,7 +6,6 @@
 import { TelegramClient } from './telegram';
 import { config } from './config';
 import { query } from './db';
-import { SeoAuditor } from './seoAuditor';
 
 export class AlertService {
   /**

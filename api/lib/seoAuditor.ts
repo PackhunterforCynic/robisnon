@@ -680,14 +680,14 @@ export class SeoAuditor {
           ruleId: 'duplicate_description',
           severity: 'INFO',
           title: 'Duplicate Meta Description Detected',
-          description: `Description is shared across ${urls.length} pages.`,
+          description: `Description "${descStr.slice(0, 50)}..." is shared across ${urls.length} pages.`,
           recommendation: 'Write unique meta descriptions tailored to each page content.',
         });
       }
     }
   }
 
-  private static calculateScore(issues: SeoIssue[], pages: PageAuditResult[]): {
+  private static calculateScore(issues: SeoIssue[], _pages?: PageAuditResult[]): {
     score: number;
     categoryScores: { technical: number; content: number; social: number; links: number };
   } {
