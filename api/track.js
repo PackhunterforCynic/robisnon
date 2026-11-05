@@ -739,6 +739,46 @@ async function handler(req, res) {
     if (isBotOrCrawler(userAgent)) {
       return res.status(200).json({ status: "ignored", reason: "crawler_or_bot" });
     }
+    if (req.body && (req.body.eventType === "contact" || req.body.isContactForm || req.body.name && req.body.email && req.body.message)) {
+      const name = String(req.body.name || "").trim();
+      const email = String(req.body.email || "").trim();
+      const message = String(req.body.message || "").trim();
+      if (!name || !email || !message) {
+        return res.status(400).json({ error: "Name, email, and message are required fields." });
+      }
+      const country2 = (req.headers["x-vercel-ip-country"] || req.headers["cf-ipcountry"] || "XX").slice(0, 8).toUpperCase();
+      const flag = TelegramClient.getCountryFlag(country2);
+      const alertMsg = `
+\u{1F4EC} <b>NEW PORTFOLIO INQUIRY RECEIVED!</b>
+\u{1F310} <code>${TelegramClient.escapeHtml(appConfig.websiteUrl)}</code> \u2022 <b>\u25CF INQUIRY</b>
+
+<pre>
+FROM     : ${TelegramClient.escapeHtml(name)}
+EMAIL    : ${TelegramClient.escapeHtml(email)}
+COUNTRY  : ${flag} ${country2}
+TIME     : ${(/* @__PURE__ */ new Date()).toLocaleTimeString("en-US")} UTC
+</pre>
+
+<b>Message:</b>
+<blockquote>${TelegramClient.escapeHtml(message)}</blockquote>
+`.trim();
+      const keyboard = {
+        inline_keyboard: [
+          [
+            { text: "\u2709\uFE0F Reply to " + name, url: `mailto:${encodeURIComponent(email)}?subject=Re:%20Inquiry%20via%20Robinson%20Portfolio` }
+          ],
+          [
+            { text: "\u{1F4CA} Dashboard", callback_data: "nav:dashboard" }
+          ]
+        ]
+      };
+      for (const adminId of appConfig.telegramAdminIds) {
+        TelegramClient.sendMessage(adminId, alertMsg, { reply_markup: keyboard }).catch((err) => {
+          console.error("[Track] Telegram contact alert error:", err.message);
+        });
+      }
+      return res.status(200).json({ ok: true, status: "sent", message: "Inquiry received successfully!" });
+    }
     const country = (req.headers["x-vercel-ip-country"] || req.headers["cf-ipcountry"] || "XX").slice(0, 8).toUpperCase();
     const { valid, payload, error } = validateTrackingPayload(req.body);
     if (!valid || !payload) {

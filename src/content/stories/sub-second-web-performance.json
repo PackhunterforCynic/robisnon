@@ -17,7 +17,7 @@
       "tag": "CRITICAL PATH",
       "heading": "Rule 2: Asynchronous Fonts",
       "text": "Synchronous web fonts block screen rendering for up to 800ms. Load fonts with preloading and print media swaps to achieve instant First Contentful Paint.",
-      "image": "https://images.unsplash.com/photo-1518173946687-a4c8a383392e?q=80&w=1200&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1200&auto=format&fit=crop"
     },
     {
       "id": 3,

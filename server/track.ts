@@ -47,6 +47,58 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return res.status(200).json({ status: 'ignored', reason: 'crawler_or_bot' });
     }
 
+    // 0. Handle direct portfolio contact form submissions
+    if (req.body && (req.body.eventType === 'contact' || req.body.isContactForm || (req.body.name && req.body.email && req.body.message))) {
+      const name = String(req.body.name || '').trim();
+      const email = String(req.body.email || '').trim();
+      const message = String(req.body.message || '').trim();
+
+      if (!name || !email || !message) {
+        return res.status(400).json({ error: 'Name, email, and message are required fields.' });
+      }
+
+      const country = (
+        (req.headers['x-vercel-ip-country'] as string) ||
+        (req.headers['cf-ipcountry'] as string) ||
+        'XX'
+      ).slice(0, 8).toUpperCase();
+      const flag = TelegramClient.getCountryFlag(country);
+
+      const alertMsg = `
+📬 <b>NEW PORTFOLIO INQUIRY RECEIVED!</b>
+🌐 <code>${TelegramClient.escapeHtml(appConfig.websiteUrl)}</code> • <b>● INQUIRY</b>
+
+<pre>
+FROM     : ${TelegramClient.escapeHtml(name)}
+EMAIL    : ${TelegramClient.escapeHtml(email)}
+COUNTRY  : ${flag} ${country}
+TIME     : ${new Date().toLocaleTimeString('en-US')} UTC
+</pre>
+
+<b>Message:</b>
+<blockquote>${TelegramClient.escapeHtml(message)}</blockquote>
+`.trim();
+
+      const keyboard = {
+        inline_keyboard: [
+          [
+            { text: '✉️ Reply to ' + name, url: `mailto:${encodeURIComponent(email)}?subject=Re:%20Inquiry%20via%20Robinson%20Portfolio` },
+          ],
+          [
+            { text: '📊 Dashboard', callback_data: 'nav:dashboard' },
+          ],
+        ],
+      };
+
+      for (const adminId of appConfig.telegramAdminIds) {
+        TelegramClient.sendMessage(adminId, alertMsg, { reply_markup: keyboard }).catch(err => {
+          console.error('[Track] Telegram contact alert error:', err.message);
+        });
+      }
+
+      return res.status(200).json({ ok: true, status: 'sent', message: 'Inquiry received successfully!' });
+    }
+
     // Resolve country from trusted Vercel edge header, never store raw IP
     const country = (
       (req.headers['x-vercel-ip-country'] as string) ||
