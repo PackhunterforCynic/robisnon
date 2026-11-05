@@ -10,3 +10,5 @@ dist
 build/
 *.log
 *.cache
+GOOGLE_APPLICATION_CREDENTIALS_JSON.json
+*credentials*.json

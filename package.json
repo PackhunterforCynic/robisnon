@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/build-api.js",
+    "build": "vite build && node scripts/prerender-pages.js && node scripts/build-api.js",
     "migrate": "node scripts/migrate.js",
     "set-webhook": "node scripts/set-webhook.js",
     "lint": "eslint .",

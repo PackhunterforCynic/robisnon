@@ -769,18 +769,22 @@ var SeoAuditor = class {
     await this.auditRobotsTxt(baseUrl, issues);
     const sitemapUrls = await this.auditSitemap(baseUrl, issues);
     const urlsToAudit = /* @__PURE__ */ new Set();
-    urlsToAudit.add(baseUrl);
     urlsToAudit.add(`${baseUrl}/`);
     if (sitemapUrls.length > 0) {
-      for (const u of sitemapUrls.slice(0, 8)) {
-        urlsToAudit.add(u);
+      for (const u of sitemapUrls) {
+        const clean = u.replace(/\/+$/, "");
+        const target = clean === baseUrl ? `${baseUrl}/` : clean;
+        urlsToAudit.add(target);
       }
     } else {
       urlsToAudit.add(`${baseUrl}/projects`);
-      urlsToAudit.add(`${baseUrl}/about`);
+      urlsToAudit.add(`${baseUrl}/blog`);
+      urlsToAudit.add(`${baseUrl}/stories`);
       urlsToAudit.add(`${baseUrl}/skills`);
+      urlsToAudit.add(`${baseUrl}/about`);
+      urlsToAudit.add(`${baseUrl}/contact`);
     }
-    const uniqueUrls = Array.from(urlsToAudit).slice(0, 8);
+    const uniqueUrls = Array.from(urlsToAudit).slice(0, 10);
     for (const url of uniqueUrls) {
       const pageResult = await this.auditPage(url, baseUrl);
       auditedPageResults.push(pageResult);

@@ -77,23 +77,27 @@ export class SeoAuditor {
     await this.auditRobotsTxt(baseUrl, issues);
     const sitemapUrls = await this.auditSitemap(baseUrl, issues);
 
-    // 2. Discover URLs to audit (limit to 10 for serverless execution limits)
+    // 2. Discover unique URLs to audit (normalized to avoid false duplicates)
     const urlsToAudit = new Set<string>();
-    urlsToAudit.add(baseUrl);
     urlsToAudit.add(`${baseUrl}/`);
 
     if (sitemapUrls.length > 0) {
-      for (const u of sitemapUrls.slice(0, 8)) {
-        urlsToAudit.add(u);
+      for (const u of sitemapUrls) {
+        const clean = u.replace(/\/+$/, '');
+        const target = clean === baseUrl ? `${baseUrl}/` : clean;
+        urlsToAudit.add(target);
       }
     } else {
       // Fallback known paths
       urlsToAudit.add(`${baseUrl}/projects`);
-      urlsToAudit.add(`${baseUrl}/about`);
+      urlsToAudit.add(`${baseUrl}/blog`);
+      urlsToAudit.add(`${baseUrl}/stories`);
       urlsToAudit.add(`${baseUrl}/skills`);
+      urlsToAudit.add(`${baseUrl}/about`);
+      urlsToAudit.add(`${baseUrl}/contact`);
     }
 
-    const uniqueUrls = Array.from(urlsToAudit).slice(0, 8);
+    const uniqueUrls = Array.from(urlsToAudit).slice(0, 10);
 
     // 3. Audit each individual page
     for (const url of uniqueUrls) {
